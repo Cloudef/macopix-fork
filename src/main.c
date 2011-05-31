@@ -4891,7 +4891,7 @@ if (sockmsg_flag){
            tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4dMacopix already running in SockMsg Mode"),
             msg_expire,msg_mode,msg_step,msg_anim,msg_loops);
          else
-           tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d "),
+           tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d"),
             msg_expire,msg_mode,msg_step,msg_anim,msg_loops);        
       }
        else

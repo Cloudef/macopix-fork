@@ -276,14 +276,14 @@ static gboolean io_callback(GIOChannel * source,
 
          flag_balloon = FALSE;
          DoBalloon(mascot);
-         flag_balloon = TRUE;
       }
       else
       {
          g_free(message);
       }
    }
-   
+   flag_balloon = TRUE;
+
    if(anim > 0)
    {
       if(anim != mascot->anime_ptn)
