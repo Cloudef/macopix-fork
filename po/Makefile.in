@@ -23,7 +23,7 @@ srcdir = .
 top_srcdir = ..
 
 
-prefix = /usr/local
+prefix = /mnt/utmp/macopix
 exec_prefix = ${prefix}
 datadir = ${prefix}/share
 libdir = ${exec_prefix}/lib
@@ -36,7 +36,7 @@ INSTALL = /bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 MKINSTALLDIRS = $(top_srcdir)/./mkinstalldirs
 
-CC = gcc
+CC = /usr/local/angstrom/arm/bin/arm-angstrom-linux-gnueabi-gcc
 GENCAT = @GENCAT@
 GMSGFMT = /usr/local/bin/msgfmt
 MSGFMT = /usr/local/bin/msgfmt
@@ -44,8 +44,8 @@ XGETTEXT = /usr/local/bin/xgettext
 MSGMERGE = msgmerge
 
 DEFS = -DHAVE_CONFIG_H
-CFLAGS = -g -O2  
-CPPFLAGS = 
+CFLAGS = -DPANDORA -O3 -pipe -march=armv7-a -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp -ftree-vectorize -ffast-math -fsingle-precision-constant  
+CPPFLAGS = -DPANDORA -O3 -pipe -march=armv7-a -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp -ftree-vectorize -ffast-math -fsingle-precision-constant
 
 INCLUDES = -I.. -I$(top_srcdir)/intl
 

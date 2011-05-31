@@ -266,23 +266,22 @@ static gboolean io_callback(GIOChannel * source,
 #else
 	message = g_strdup(buf+8+2+4+4+4);
 #endif
-   if(message)
-   {
-      if(strlen(message) > 0)
-      {
-         if (mascot->sockmsg != NULL)
-	         g_free(mascot->sockmsg);
-         mascot->sockmsg = message;
 
-         flag_balloon = FALSE;
-         DoBalloon(mascot);
-      }
-      else
-      {
-         g_free(message);
-      }
+   if(strcmp(message, "[nostring]") != 0)
+   {
+      if (mascot->sockmsg != NULL)
+         g_free(mascot->sockmsg);
+      mascot->sockmsg = message;
+
+      flag_balloon = FALSE;
+      DoBalloon(mascot);
+      flag_balloon = TRUE;
    }
-   flag_balloon = TRUE;
+   else
+   {
+      if(message)
+         g_free(message);
+   }
 
    if(anim > 0)
    {
@@ -293,9 +292,13 @@ static gboolean io_callback(GIOChannel * source,
          mascot->anime_frm=0;
       }
    }
+   else if( anim == 0 )
+   {
+      mascot->anime_lop = 0;
+   }
    
    if( mascot->anime_ptn != 0 && loops > -2 )
-      mascot->anime_lop=loops;
+      mascot->anime_lop = loops;
 }
 
 static gboolean io_callback_sv(GIOChannel * source,

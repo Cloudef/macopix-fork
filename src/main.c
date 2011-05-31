@@ -1,4 +1,4 @@
-///  MaCoPiX = Mascot Construnctive Pilot for X
+//  MaCoPiX = Mascot Construnctive Pilot for X
 //                                (ActX / Gtk+ Evolution)
 //    A unified desktop mascot program
 //    for UNIX / X Window System with Gdk Environment
@@ -4891,8 +4891,8 @@ if (sockmsg_flag){
            tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4dMacopix already running in SockMsg Mode"),
             msg_expire,msg_mode,msg_step,msg_anim,msg_loops);
          else
-           tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d"),
-            msg_expire,msg_mode,msg_step,msg_anim,msg_loops);        
+           tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d%s"),
+            msg_expire,msg_mode,msg_step,msg_anim,msg_loops,"[nostring]");        
       }
        else
          tmp_msg=g_strdup_printf("%8d%2d%4d%4d%4d%s",
