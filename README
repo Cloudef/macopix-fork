@@ -1,0 +1,11 @@
+ Macopix fork with animation signal support. 
+
+   macopix --anim <animation id> --anim-loop <loop count>
+
+ Can be used with messages
+ 
+   macopix --message "la-la-la" --anim 1 --anim-loop -1
+
+   Where -1 makes it repeat forever.
+
+Refer to README.orginal for detailed documentation and original author. 
