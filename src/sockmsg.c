@@ -254,8 +254,6 @@ static gboolean io_callback(GIOChannel * source,
    }
 
    gchar *message = NULL;
-	mascot->balseq=0;
-	mascot->bal_mode=BALLOON_SOCKMSG;
 #ifdef USE_GTK2
 	if(mode==SOCK_STEPPING){
 	  message = set_typing_msg(buf+8+2+4+4+4,step);
@@ -267,21 +265,36 @@ static gboolean io_callback(GIOChannel * source,
 	message = g_strdup(buf+8+2+4+4+4);
 #endif
 
+   if(!message)
+      return;
+
+   int nomsg = 0;
    if(strcmp(message, "[nostring]") != 0)
    {
-      if (mascot->sockmsg != NULL)
+      if(mascot->sockmsg)
          g_free(mascot->sockmsg);
       mascot->sockmsg = message;
-
-      flag_balloon = FALSE;
-      DoBalloon(mascot);
-      flag_balloon = TRUE;
    }
    else
    {
-      if(message)
+      if(!mascot->sockmsg)
+         mascot->sockmsg = message;
+      else
+      {
          g_free(message);
+         message = NULL;
+      }
+      nomsg = 1;
    }
+
+   if(!nomsg)
+      mascot->balseq=0;
+   else
+      mascot->balseq=1;
+
+   mascot->bal_mode=BALLOON_SOCKMSG; 
+   DoBalloon(mascot);
+   flag_balloon = TRUE;   
 
    if(anim > 0)
    {

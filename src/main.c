@@ -4859,11 +4859,11 @@ while(i_opt < argc) {
    msg_mode=SOCK_STEPPING;
  }
  else if((strcmp(argv[i_opt],"--anim") == 0)){
-   msg_anim=atoi(argv[i_opt + 1]); 
+   msg_anim = atoi(argv[i_opt + 1]); 
    sockmsg_sendanim = 1;
  }
  else if((strcmp(argv[i_opt],"--anim-loop") == 0)){
-   msg_loops=atoi(argv[i_opt + 1]); 
+   msg_loops = atoi(argv[i_opt + 1]); 
    sockmsg_sendanim = 1;
  }
  i_opt++;
@@ -4891,8 +4891,8 @@ if (sockmsg_flag){
            tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4dMacopix already running in SockMsg Mode"),
             msg_expire,msg_mode,msg_step,msg_anim,msg_loops);
          else
-           tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d%s"),
-            msg_expire,msg_mode,msg_step,msg_anim,msg_loops,"[nostring]");        
+           tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d[nostring]"),
+            msg_expire,msg_mode,msg_step,msg_anim,msg_loops);        
       }
        else
          tmp_msg=g_strdup_printf("%8d%2d%4d%4d%4d%s",

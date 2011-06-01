@@ -1020,7 +1020,6 @@ void DoBalloon(typMascot *mascot)
       balseqp=balseqpend[i_wp];  // 改ページする間隔コマ数
     }
 
-    
 #ifdef USE_CAIRO
     //if((mascot->flag_bal_cairo)&&(mascot->flag_composite!=COMPOSITE_FALSE))
     if(mascot->flag_bal_cairo)
@@ -1107,7 +1106,6 @@ void DoBalloon(typMascot *mascot)
   old_y=mascot->y;
 
 }
-
 
 void make_balloon(typMascot *mascot){
   balloon_main = gtk_window_new(GTK_WINDOW_POPUP);
