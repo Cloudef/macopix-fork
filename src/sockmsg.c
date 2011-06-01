@@ -278,23 +278,32 @@ static gboolean io_callback(GIOChannel * source,
    else
    {
       if(!mascot->sockmsg)
-         mascot->sockmsg = message;
+      {
+         /* there is no old message, we can safely skip
+          * whole balloon thing I guess.
+          * I have really no idea how it works */
+         nomsg    = 2;
+      }
       else
       {
-         g_free(message);
-         message = NULL;
+         nomsg    = 1;
       }
-      nomsg = 1;
+
+      g_free(message);
+      message  = NULL;           
    }
 
-   if(!nomsg)
-      mascot->balseq=0;
-   else
-      mascot->balseq=1;
+   if(nomsg != 2)
+   {
+      if(!nomsg)
+         mascot->balseq=0;
+      else
+         mascot->balseq=1;  
 
-   mascot->bal_mode=BALLOON_SOCKMSG; 
-   DoBalloon(mascot);
-   flag_balloon = TRUE;   
+      mascot->bal_mode=BALLOON_SOCKMSG; 
+      DoBalloon(mascot);
+      flag_balloon = TRUE;   
+   }
 
    if(anim > 0)
    {
