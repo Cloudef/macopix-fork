@@ -2,7 +2,7 @@
 //                                (ActX / Gtk+ Evolution)
 //
 //
-//      main.h  
+//      main.h
 //      Configuration header  for  MaCoPiX
 //
 //                            Copyright 2002-2008  K.Chimari
@@ -13,12 +13,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation; either version 2 of the License, or
 //  (at your option) any later version.
-// 
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
@@ -29,12 +29,12 @@
 //  - Translucent mascot and biff images
 //       gdk_window_set_opacity
 //       Gtk+ 2.12
-//  
+//
 //  - Tooltip for clock  (__GTK_TOOLTIP_H__)
 //       Gtk+2.12
 //     If no, use Gtktooltips.
 //
-//  - Auto detection of composited or not 
+//  - Auto detection of composited or not
 //      gtk_widget_is_composited
 //       Gtk+2.10
 //     If no, flag_composite=COMPISTE_UNKNOWN
@@ -46,7 +46,7 @@
 //
 //  - Icon on GNOME system tray  (__GTK_STATUS_ICON_H__)
 //       gtkstatusicon.h
-//       Gtk+2.10 
+//       Gtk+2.10
 //
 //  - Translucent Clock and Balloon (USE_CAIRO)
 //       cairo/cairo.h
@@ -54,17 +54,17 @@
 //
 //  - Combo Box    (__GTK_COMBO_BOX__)
 //       gtkcombobox.h
-//       Gtk+ 2.4 
+//       Gtk+ 2.4
 //     If no, use GtkCombo.
 //
 //  - Color Button    (__GTK_CLOR_BUTTON__)
 //       gtkcolorbutton.h
-//       Gtk+ 2.4 
+//       Gtk+ 2.4
 //     If no, use GtkColorSelection and GtkButton.
 //
 //  - File Chooser    (__GTK_FILE_CHOOSER__)
 //       gtkfilechooser.h
-//       Gtk+ 2.4 
+//       Gtk+ 2.4
 //     If no, use GtkFileSelection.
 //
 //  - Icon on menus    (__GTK_STOCK_H__)
@@ -79,7 +79,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
-#endif  
+#endif
 
 
 #include<stdio.h>
@@ -219,8 +219,8 @@ enum{ CLOCK_NO,
 }ClockMode;
 
 //ANIME
-#define MAX_PIXMAP   64
-#define MAX_ANIME_FRAME   64
+#define MAX_PIXMAP   100
+#define MAX_ANIME_FRAME   100
 #define MAX_ANIME_PATTERN 10
 
 
@@ -319,9 +319,9 @@ enum{	 MAG_IP_NEAREST,
 
 
 //Clock ¥¿¥¤¥×
-enum{ CLOCK_TYPE_24S, 
-	CLOCK_TYPE_24M, 
-	CLOCK_TYPE_12S, 
+enum{ CLOCK_TYPE_24S,
+	CLOCK_TYPE_24M,
+	CLOCK_TYPE_12S,
 	CLOCK_TYPE_12M } ClockType;
 
 
@@ -331,7 +331,7 @@ enum{ CLOCK_TYPE_24S,
 #endif
 
 // Install mode
-enum{   MENU_SELECT, 
+enum{   MENU_SELECT,
 	  MENU_INSTALL_USER,
 	  MENU_INSTALL_COMMON,
 	  START_MENU_SELECT,
@@ -425,8 +425,8 @@ enum{   MENU_SELECT,
 #define COLOR_BALBD_B 0x53f4
 
 // for Callback of Configuration Dialog
-enum{CONF_FONT_CLK,	   
-       CONF_FONT_BAL,	   
+enum{CONF_FONT_CLK,
+       CONF_FONT_BAL,
        CONF_DEF_FONT_CLK,
        CONF_DEF_FONT_BAL,
        INIT_DEF_FONT_CLK,
@@ -436,14 +436,14 @@ enum{CONF_COLOR_CLK,
        CONF_COLOR_CLKBG,
        CONF_COLOR_CLKBD,
        CONF_COLOR_CLKSD,
-       CONF_COLOR_BAL,  
+       CONF_COLOR_BAL,
        CONF_COLOR_BALBG,
        CONF_COLOR_BALBD,
-       CONF_DEF_COLOR_CLK,  
+       CONF_DEF_COLOR_CLK,
        CONF_DEF_COLOR_CLKBG,
        CONF_DEF_COLOR_CLKBD,
        CONF_DEF_COLOR_CLKSD,
-       CONF_DEF_COLOR_BAL,  
+       CONF_DEF_COLOR_BAL,
        CONF_DEF_COLOR_BALBG,
        CONF_DEF_COLOR_BALBD} GuiColorConf;
 
@@ -651,7 +651,7 @@ struct _typMail{
   gchar *sound;
   off_t    size;
   time_t   last_check;
-  int      count;            // mailcount in server 
+  int      count;            // mailcount in server
   int      new_count;
   int      fetched_count;    // fetched fs this access
   int      displayed_count;  // displayed fs
@@ -722,10 +722,10 @@ struct _typMascot{
   GdkFont *fontclk;
   GdkFont *fontbal;
 #endif
-  gchar *fontname_bal;  
-  gchar *fontname_clk;  
-  gchar *deffontname_bal;  
-  gchar *deffontname_clk;  
+  gchar *fontname_bal;
+  gchar *fontname_clk;
+  gchar *deffontname_bal;
+  gchar *deffontname_clk;
 #ifdef USE_CAIRO
   myPangoCairo fontbal_pc;
   myPangoCairo fontclk_pc;
@@ -815,7 +815,7 @@ struct _typMascot{
 #endif
   gint clktype;
   gboolean clk_pm;
-  char digit[20];  
+  char digit[20];
   int anime_ptn;
   int anime_frm;
   int anime_seq;
@@ -899,8 +899,8 @@ struct _typMascot{
   gboolean duet_use_click;
   gboolean duet_use_random;
   typCursor cursor;
-  gchar    *code;  
-  gchar    *menu_code;  
+  gchar    *code;
+  gchar    *menu_code;
   ProgressData *pdata;
 //#if GTK_CHECK_VERSION(2, 10, 0)
 #ifdef __GTK_STATUS_ICON_H__

@@ -3,13 +3,13 @@
 //    A unified desktop mascot program
 //    for UNIX / X Window System with Gdk Environment
 //
-//     main.c  
+//     main.c
 //     The Main code  for  MaCoPiX
 //
 //      Gtk+ > 1.2.6           (or Gtk+ > 2.2.0)
 //      Gdk-pixbuf  > 0.7.0(?) (or Gtk+ > 2.2.0)
 //      GNU GetText > 0.10.0                     are necessary.
-//    
+//
 //                            Copyright 2002-2008  K.Chimari
 //                                     http://rosegray.sakura.ne.jp/
 //
@@ -18,12 +18,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation; either version 2 of the License, or
 //  (at your option) any later version.
-// 
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.
@@ -69,8 +69,8 @@ GtkWidget *biff_pix;
 #ifdef USE_WIN32
 GtkWidget *clock_fg, *balloon_fg;
 #endif
-GtkWidget *PopupMenu; 
-GdkDrawable *pixmap_main[2]={NULL,NULL}, 
+GtkWidget *PopupMenu;
+GdkDrawable *pixmap_main[2]={NULL,NULL},
 *pixmap_clk[2]={NULL,NULL},
 *pixmap_bal[2]={NULL,NULL};
 #ifdef USE_WIN32
@@ -78,7 +78,7 @@ GdkDrawable *pixmap_sdw[2]={NULL,NULL};
 #endif
 
 gboolean FlagInstalledMenu;
-// ¥¹¥×¥é¥¤¥È½é´ü²½
+// ???×¥é¥¤?È½?????
 static typSprite sprite_void[MAX_PIXMAP+1];
 
 
@@ -271,13 +271,13 @@ if(locale){
   g_free(tmp_locale);
   res = g_convert_with_iconv (srcstr, len, converter, r, w, error);
   g_iconv_close(converter);
-  if (res) 
+  if (res)
     return res;
 }
 
 // 2nd  current locale
 res = g_locale_to_utf8 (srcstr, len, r, w, error);
-if (res) 
+if (res)
    return res;
 
 // 3rd  MaCoPiX default (EUC-JP)
@@ -330,7 +330,7 @@ return(mascot->menu_tgt[dest_cat][dest_tgt]);
 }
 
 
-// ¥á¥Ë¥å¡¼¥Õ¥¡¥¤¥ë¤ÎÆÉ¤ß¹þ¤ß
+// ???Ë¥å¡¼?Õ¥????????É¤ß¹???
 void ReadMenu(typMascot *mascot, gint offset_i_cat, gchar *merge_file)
 {
 ConfigFile *cfgfile;
@@ -349,15 +349,15 @@ gchar progress_txt[128];
 
 mascot->flag_consow=FALSE;
 
-if(!mascot->menu_file){     // ¥á¥Ë¥å¡¼¤Ê¤·
+if(!mascot->menu_file){     // ???Ë¥å¡¼?Ê¤?
  mascot->menu_total=0;
  mascot->menu_cat_max=0;
  return;
 }
 
-/// ¥á¥Ë¥å¡¼¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
- 
-// 1. Current¤«¤é
+/// ???Ë¥å¡¼?Õ¥??????????Ö¤?Ãµ??
+
+// 1. Current????
 if(!merge_file){
  filename = g_strdup(mascot->menu_file);
 }
@@ -383,10 +383,10 @@ m_place=4;
  // 3. USER Directory
  if(m_place==0){
 #ifdef USE_WIN32
-   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->menu_file), NULL);
 #else
-   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->menu_file), NULL);
 #endif
    if(access(filename,F_OK)==0){
@@ -398,18 +398,18 @@ else{
  // 3. USER Directory
  if(m_place==0){
 #ifdef USE_WIN32
-   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->menu_file), NULL);
 #else
 
-   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->menu_file), NULL);
 #endif
    if(access(filename,F_OK)==0){
 m_place=3;
    }
  }
- 
+
 #ifdef USE_COMMON
  // 4.  Common Directory
  if(m_place==0){
@@ -423,7 +423,7 @@ m_place=4;
 
 
 
-// ¤ß¤Ä¤«¤é¤Ê¤¤
+// ?ß¤Ä¤????Ê¤?
 if(m_place==0){
 #ifdef GTK_MSG
  popup_message(POPUP_TIMEOUT*2,
@@ -438,22 +438,22 @@ if(m_place==0){
 }
 
 
-// ¥æ¡¼¥¶¡¼ ¥Ç¥£¥ì¥¯¥È¥ê¤Ë¤½¤Î¥Õ¥¡¥¤¥ë¤¬¤Ê¤«¤Ã¤¿¤é¥³¥Ô¡¼¤¹¤ë
+// ?æ¡¼???? ?Ç¥??ì¥¯?È¥??Ë¤??Î¥Õ¥????ë¤¬?Ê¤??Ã¤??é¥³?Ô¡?????
 if((m_place==1)||(m_place==4)){
  if(mascot->flag_install){
 #ifdef USE_COMMON
    if(mascot->flag_common){
 check_common_dir();
-filename2 = g_strconcat(COMMON_DIR, 
+filename2 = g_strconcat(COMMON_DIR,
          my_basename(mascot->menu_file), NULL);
    }
    else{
 #endif
 #ifdef USE_WIN32
-filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
          my_basename(mascot->menu_file), NULL);
 #else
-filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
          my_basename(mascot->menu_file), NULL);
 #endif
 #ifdef USE_COMMON
@@ -479,21 +479,21 @@ if(mascot->cons_check_mode!=CONS_IGNORE){
 stat(filename0, &statbuf);
 common_mtime=statbuf.st_mtime;
    }
-#ifdef USE_WIN32      
-   filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+#ifdef USE_WIN32
+   filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
             my_basename(mascot->menu_file), NULL);
 #else
-   filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
             my_basename(mascot->menu_file), NULL);
 #endif
    if(access(filename2,F_OK)==0){
 stat(filename2, &statbuf);
 user_mtime=statbuf.st_mtime;
    }
-   
+
    stat(filename, &statbuf);
    if((user_mtime==statbuf.st_mtime)&&(user_mtime<common_mtime)){
-// Menu file in User Dir is older 
+// Menu file in User Dir is older
 // than the corresponded one in Common Dir.
 if(mascot->cons_check_mode==CONS_MANUAL){
   create_cons_dialog(mascot,my_basename(filename),
@@ -515,11 +515,11 @@ if(mascot->flag_consow){
 #endif
 
 
-if(offset_i_cat==0){  // ÄÌ¾ïÆÉ¤ß¹þ¤ß
+if(offset_i_cat==0){  // ?Ì¾??É¤ß¹???
  mascot->menu_file=g_strdup(filename);
 
  mascot->menu_total=0;
- mascot->menu_cat_max=0;// ¤³¤ì¤ÏÂ­¤·»»¤Ç¤Ï¤Ê¤¤¤Î¤Çmerge¤Ç¤â¥¯¥ê¥¢¤Ç¤­¤ë¡£
+ mascot->menu_cat_max=0;// ??????Â­?????Ç¤Ï¤Ê¤??Î¤?merge?Ç¤â¥¯?ê¥¢?Ç¤??ë¡£
 }
 cfgfile = xmms_cfg_open_file(filename);
 
@@ -578,7 +578,7 @@ if(flag_end) break;
  flag_end=FALSE;
 
  for(i_cat=offset_i_cat;i_cat<MAX_MENU_CATEGORY;i_cat++){
-   
+
    sprintf(f_tmp0,"Menu%02d",(i_cat-offset_i_cat));
    if(!xmms_cfg_read_string(cfgfile, f_tmp0, "Name",
              &mascot->menu_cat[i_cat]))
@@ -587,11 +587,11 @@ mascot->menu_cat[i_cat]=NULL;
    if(mascot->menu_cat[i_cat]){
       mascot->menu_cat[i_cat]=
         x_locale_to_utf8(mascot->menu_cat[i_cat],-1,NULL,NULL,NULL,mascot->menu_code);
-if(!mascot->menu_cat[i_cat]) 
+if(!mascot->menu_cat[i_cat])
   mascot->menu_cat[i_cat]=g_strdup(_("(Invalid Character Code)"));
    }
 #endif
-   
+
    for(i_tgt=0;i_tgt<MAX_MENU_TARGET;i_tgt++){
 sprintf(tmp0,"file%02d",i_tgt);
 if(!xmms_cfg_read_string(cfgfile, f_tmp0, tmp0,
@@ -662,7 +662,7 @@ else{
 
 }
 
-if(install_flag)   
+if(install_flag)
  mascot->menu_file=g_strdup(filename2);
 
 g_free(filename);
@@ -678,16 +678,16 @@ FlagInstalledMenu=FALSE;
 
 /*for(i_cat=0;i_cat<mascot->menu_cat_max;i_cat++){
  g_print(" Category : %s \n", mascot->menu_cat[i_cat]);
- 
+
  for(i_tgt=0;i_tgt<mascot->menu_tgt_max[i_cat];i_tgt++){
    g_print("     File : %s \n", mascot->menu_tgt[i_cat][i_tgt]);
- }    
+ }
  }*/
 
 }
 
 
-// ¥á¥Ë¥å¡¼¥Õ¥¡¥¤¥ë¤Î¸¡º÷
+// ???Ë¥å¡¼?Õ¥??????Î¸???
 void ScanMenu(typScanMenu *smenu, gboolean flag_print)
 {
 DIR *dirp;
@@ -708,7 +708,7 @@ extp++;
 
 smenu->max_menu=0;
 
-/// ¥á¥Ë¥å¡¼¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ???Ë¥å¡¼?Õ¥??????????Ö¤?Ãµ??
 
 #ifdef USE_COMMON
 // Common Directory
@@ -729,7 +729,7 @@ else{
    if(S_ISREG(statbuf.st_mode)){
 cp=entry->d_name;
 cp+=strlen(entry->d_name)-strlen(MENU_EXTENSION)+1;
-if(!strcmp(extp,cp)){ // ³ÈÄ¥»Ò¤¬ .menu¤À¤Ã¤¿¤é
+if(!strcmp(extp,cp)){ // ??Ä¥?Ò¤? .menu?À¤Ã¤???
   smenu->file[i_menu]=g_strdup(entry->d_name);
   if(ScanMenu2(smenu,i_menu)){
     if(flag_print){
@@ -739,7 +739,7 @@ if(!strcmp(extp,cp)){ // ³ÈÄ¥»Ò¤¬ .menu¤À¤Ã¤¿¤é
       }
       else{
    g_print(_("  %20s :  %2d mascots    [%s]\n"),
-      smenu->file[i_menu], smenu->num[i_menu], 
+      smenu->file[i_menu], smenu->num[i_menu],
       smenu->cat[i_menu]);
       }
     }
@@ -779,7 +779,7 @@ else{
    if(S_ISREG(statbuf.st_mode)){
 cp=entry->d_name;
 cp+=strlen(entry->d_name)-strlen(MENU_EXTENSION)+1;
-if(!strcmp(extp,cp)){ // ³ÈÄ¥»Ò¤¬ .menu¤À¤Ã¤¿¤é
+if(!strcmp(extp,cp)){ // ??Ä¥?Ò¤? .menu?À¤Ã¤???
   smenu->file[i_menu]=g_strdup(entry->d_name);
   if(ScanMenu2(smenu,i_menu,entry->d_name)){
     if(flag_print){
@@ -789,11 +789,11 @@ if(!strcmp(extp,cp)){ // ³ÈÄ¥»Ò¤¬ .menu¤À¤Ã¤¿¤é
       }
       else{
    g_print(_("  %20s :  %2d mascots    [%s]\n"),
-      smenu->file[i_menu], smenu->num[i_menu], 
+      smenu->file[i_menu], smenu->num[i_menu],
       smenu->cat[i_menu]);
       }
     }
-    
+
     smenu->dir[i_menu]=SMENU_DIR_USER;
     i_menu++;
   }
@@ -814,7 +814,7 @@ g_free(cwdname);
 gboolean ScanMenu2(typScanMenu *smenu,gint i_menu)
 {
 ConfigFile *cfgfile;
-int i_cat, i_tgt; 
+int i_cat, i_tgt;
 gchar tmp0[10], f_tmp0[10];
 gchar *dummy=NULL;
 gboolean flag_end=FALSE;
@@ -885,7 +885,7 @@ return(TRUE);
 
 
 
-// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤Î½ñ¤­¹þ¤ß
+// ?Þ¥????Ã¥È¥Õ¥??????Î½ñ¤­¹???
 void SaveMenu(typMascot *mascot)
 {
 ConfigFile *cfgfile;
@@ -908,7 +908,7 @@ if(mascot->menu_code)
 #endif
 
 for(i_cat=0;i_cat<mascot->menu_cat_max;i_cat++){
-  
+
  sprintf(f_tmp0,"Menu%02d",i_cat);
 #ifdef USE_GTK2
  if(mascot->menu_cat[i_cat]){
@@ -922,13 +922,13 @@ x_locale_from_utf8(mascot->menu_cat[i_cat],-1,NULL,NULL,NULL,mascot->menu_code);
 #endif
 
  for(i_tgt=0;i_tgt<mascot->menu_tgt_max[i_cat];i_tgt++){
- 
+
    sprintf(tmp0,"file%02d",i_tgt);
-   xmms_cfg_write_string(cfgfile, f_tmp0, tmp0, 
+   xmms_cfg_write_string(cfgfile, f_tmp0, tmp0,
           mascot->menu_tgt[i_cat][i_tgt]);
  }
 
- 
+
 }
 
 xmms_cfg_write_file(cfgfile, filename);
@@ -984,9 +984,9 @@ mascot->def_alpbalbd=CAIRO_DEF_ALPHA_OTHER;
 
 
 
-// Á´ÂÎÀßÄê¥Õ¥¡¥¤¥ë¤ÎÆÉ¤ß¹þ¤ß
-// ¤¢¤¯¤Þ¤Ç¤â¥Ç¥Õ¥©¥ë¥È¤Ê¤Î¤Çget_option¤è¤ê¤âÁ°¤Ë¼Â¹Ô¤¹¤ë
-// µ¯Æ°»þ¤Ë·èÄê ¥Þ¥¹¥³¥Ã¥È¤òÊÑ¹¹¤·¤Æ¤âÊÝÂ¸¤µ¤ì¤ë¥Ñ¥é¥á¡¼¥¿
+// Á´???????Õ¥????????É¤ß¹???
+// ?????Þ¤Ç¤??Ç¥Õ¥????È¤Ê¤Î¤?get_option??????Á°?Ë¼Â¹Ô¤???
+// ??Æ°???Ë·??? ?Þ¥????Ã¥È¤??Ñ¹????Æ¤???Â¸???????Ñ¥??á¡¼??
 void ReadRC(typMascot *mascot, gboolean def_flag)
 {
 ConfigFile *cfgfile;
@@ -994,7 +994,7 @@ gchar *filename;
 gchar *field_tmp=NULL;
 gint col_tmp;
 
-// USER_DIR¤¬¤Ê¤¤¤È¤­¤ÏºîÀ®¤¹¤ë  : ¤ª¤½¤é¤¯½é²óµ¯Æ°»þ¤Î¤ß
+// USER_DIR???Ê¤??È¤??Ïº?À®????  : ?????é¤¯??????Æ°???Î¤?
 #ifdef USE_WIN32
 filename = g_strconcat(get_win_home(), G_DIR_SEPARATOR_S,USER_DIR, NULL);
 #else
@@ -1022,7 +1022,7 @@ if (access(filename, F_OK) != 0) {
 #else
  mkdir(filename,(S_IRWXU|S_IRGRP|S_IROTH));
 #endif
-}      
+}
 #ifdef USE_WIN32
 filename = g_strconcat(get_win_home(), G_DIR_SEPARATOR_S,USER_DIR, PIXDIR, NULL);
 #else
@@ -1211,7 +1211,7 @@ if (cfgfile) {
    col_tmp=CAIRO_DEF_ALPHA_OTHER;
  mascot->def_alpbal=col_tmp;
 #endif
-    
+
  if(!xmms_cfg_read_int(cfgfile, field_tmp, "bg_r", &col_tmp))
    col_tmp=COLOR_BALBG_R;
  mascot->def_colbalbg->red=(guint)col_tmp;
@@ -1303,7 +1303,7 @@ if (cfgfile) {
    mascot->sdw_flag=TRUE;
  if(!xmms_cfg_read_float(cfgfile, field_tmp, "x",&mascot->sdw_x))
    mascot->sdw_x=CAIRO_SHADOW_X;
- 
+
  if(!xmms_cfg_read_float(cfgfile, field_tmp, "y",&mascot->sdw_y))
    mascot->sdw_y=CAIRO_SHADOW_Y;
 
@@ -1311,7 +1311,7 @@ if (cfgfile) {
    mascot->sdw_alpha=CAIRO_SHADOW_ALPHA;
 #endif
 
- // »þÊó
+ // ????
  if(def_flag) field_tmp=g_strdup("Default-Signal");
  else         field_tmp=g_strdup("Signal");
 
@@ -1407,7 +1407,7 @@ mascot->mail.pop_port=POP3_PORT_NO;
 #endif  // USE_BIFF
 
 #ifdef USE_SOCKMSG
- // ¥Ç¥å¥¨¥Ã¥È¥¢¥Ë¥á
+ // ?Ç¥å¥¨?Ã¥È¥??Ë¥?
  if(def_flag) field_tmp=g_strdup("Default-Duet");
  else         field_tmp=g_strdup("Duet");
 
@@ -1418,10 +1418,10 @@ mascot->mail.pop_port=POP3_PORT_NO;
             &mascot->duet_use_random))
    mascot->duet_use_random=TRUE;
 #endif  // USE_SOCKMSG
- 
+
 
 #ifdef USE_SOCKMSG
- // ¥Ç¥å¥¨¥Ã¥È¥¢¥Ë¥á
+ // ?Ç¥å¥¨?Ã¥È¥??Ë¥?
  if(def_flag) field_tmp=g_strdup("Default-Sockmsg");
  else         field_tmp=g_strdup("Sockmsg");
 
@@ -1435,9 +1435,9 @@ mascot->mail.pop_port=POP3_PORT_NO;
         &mascot->sockmsg_expire_def))
    mascot->sockmsg_expire_def=(SYS_BALLOON_EXPIRE)*(INTERVAL);
 #endif  // USE_SOCKMSG
- 
 
-#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32) 
+
+#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32)
  // Alpha Percentage
  if(def_flag)  field_tmp=g_strdup("Default-Alpha");
  else          field_tmp=g_strdup("Alpha");
@@ -1466,7 +1466,7 @@ mascot->mail.pop_port=POP3_PORT_NO;
  xmms_cfg_free(cfgfile);
 }
 else{
- // USER_RCFILE¤¬¤Ê¤¤¤È¤­¤ÏºîÀ®¤¹¤ë : ¤ª¤½¤é¤¯½é²óµ¯Æ°»þ¤Î¤ß
+ // USER_RCFILE???Ê¤??È¤??Ïº?À®???? : ?????é¤¯??????Æ°???Î¤?
  mascot->flag_install=FALSE;
 #ifdef USE_CAIRO
  mascot->force_composite=FALSE;
@@ -1519,8 +1519,8 @@ else{
  mascot->sdw_y=CAIRO_SHADOW_Y;
  mascot->sdw_alpha=CAIRO_SHADOW_ALPHA;
 #endif
- 
- 
+
+
  mascot->signal.type=SIGACT_NO;
  mascot->signal.com=NULL;
 
@@ -1555,7 +1555,7 @@ else{
  mascot->sockmsg_expire_def=(SYS_BALLOON_EXPIRE)*(INTERVAL);
 #endif  // USE_SOCKMSG
 
-#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32) 
+#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32)
  mascot->force_def_alpha=FALSE;
  mascot->def_alpha_main=DEF_ALPHA_MAIN;
 #ifdef USE_BIFF
@@ -1568,7 +1568,7 @@ else{
  mascot->def_flag_clkfg=TRUE;
  mascot->def_flag_balfg=TRUE;
 #endif
- 
+
  SaveRC(mascot,TRUE);
  SaveRC(mascot,FALSE);
 }
@@ -1577,7 +1577,7 @@ g_free(filename);
 
 }
 
-// Á´ÂÎÀßÄê¥Õ¥¡¥¤¥ë¤Î½ñ¤­¹þ¤ß
+// Á´???????Õ¥??????Î½ñ¤­¹???
 void SaveRC(typMascot *mascot,  gboolean def_flag)
 {
 ConfigFile *cfgfile;
@@ -1608,13 +1608,13 @@ xmms_cfg_write_string(cfgfile, field_tmp, "font_balloon",mascot->deffontname_bal
 //					      mascot->menu_file);
 //else     xmms_cfg_remove_key(cfgfile,field_tmp, "menu");
 #ifndef USE_WIN32
-if(mascot->sound_command) 
+if(mascot->sound_command)
  xmms_cfg_write_string(cfgfile, field_tmp, "sound_command",mascot->sound_command);
 else     xmms_cfg_remove_key(cfgfile,field_tmp, "sound_command");
 xmms_cfg_write_int(cfgfile, field_tmp, "cons_check_mode",mascot->cons_check_mode);
 #endif
 #ifdef USE_GTAR
-if(mascot->tar_command) 
+if(mascot->tar_command)
  xmms_cfg_write_string(cfgfile, field_tmp, "tar_command",mascot->tar_command);
 else     xmms_cfg_remove_key(cfgfile,field_tmp, "tar_command");
 #endif
@@ -1803,7 +1803,7 @@ xmms_cfg_write_int(cfgfile, field_tmp, "alpha",mascot->sdw_alpha);
 #endif
 
 
-// »þÊó
+// ????
 if(def_flag) field_tmp=g_strdup("Default-Signal");
 else         field_tmp=g_strdup("Signal");
 
@@ -1872,7 +1872,7 @@ xmms_cfg_write_boolean(cfgfile, field_tmp, "tooltips",mascot->mail.tooltips_fl);
 #endif
 
 #ifdef USE_SOCKMSG
-// Duet¥¢¥Ë¥á
+// Duet???Ë¥?
 if(def_flag) field_tmp=g_strdup("Default-Duet");
 else         field_tmp=g_strdup("Duet");
 
@@ -1889,7 +1889,7 @@ else         field_tmp=g_strdup("Sockmsg");
 
 xmms_cfg_write_int(cfgfile, field_tmp, "type", mascot->sockmsg_type);
 xmms_cfg_write_int(cfgfile, field_tmp, "interval", mascot->sockmsg_step);
-xmms_cfg_write_int(cfgfile, field_tmp, "expire_def", 
+xmms_cfg_write_int(cfgfile, field_tmp, "expire_def",
         mascot->sockmsg_expire_def);
 #endif  // USE_SOCKMSG
 
@@ -1897,7 +1897,7 @@ xmms_cfg_write_int(cfgfile, field_tmp, "expire_def",
  // Alpha Percentage
 if(def_flag)  field_tmp=g_strdup("Default-Alpha");
 else          field_tmp=g_strdup("Alpha");
- 
+
 xmms_cfg_write_boolean(cfgfile, field_tmp, "force_def",
        mascot->force_def_alpha);
 xmms_cfg_write_int(cfgfile, field_tmp, "main",mascot->def_alpha_main);
@@ -1915,8 +1915,8 @@ xmms_cfg_free(cfgfile);
 
 
 
-// POP¥æ¡¼¥¶¡¼¾ðÊó¤ò½ñ¤­¹þ¤àÍ½Äê¤¬¤¢¤ë¤¿¤á¥Ç¥Õ¥©¥ë¥È¤Ç¥æ¡¼¥¶¡¼¤Î¤ß¤Î
-// rw¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó( chmod 600 )¤È¤¹¤ë
+// POP?æ¡¼???????????ñ¤­¹???Í½?ê¤¬???ë¤¿???Ç¥Õ¥????È¤Ç¥æ¡¼?????Î¤ß¤?
+// rw?Ñ¡??ß¥Ã¥?????( chmod 600 )?È¤???
 #ifndef USE_WIN32
 if((chmod(filename,(S_IRUSR | S_IWUSR ))) != 0){
  g_print("Cannot Chmod Resource File %s!  Please check!!!\n",filename);
@@ -1928,7 +1928,7 @@ g_free(filename);
 }
 
 
-// ¥Ç¥Õ¥©¥ë¥È¥á¥Ë¥å¡¼¤òRC-file¤ËÊÝÂ¸
+// ?Ç¥Õ¥????È¥??Ë¥å¡¼??RC-file????Â¸
 void SaveDefMenu(typMascot *mascot,  gboolean def_flag)
 {
 ConfigFile *cfgfile;
@@ -1952,8 +1952,8 @@ xmms_cfg_write_file(cfgfile, filename);
 xmms_cfg_free(cfgfile);
 
 
-// POP¥æ¡¼¥¶¡¼¾ðÊó¤ò½ñ¤­¹þ¤àÍ½Äê¤¬¤¢¤ë¤¿¤á¥Ç¥Õ¥©¥ë¥È¤Ç¥æ¡¼¥¶¡¼¤Î¤ß¤Î
-// rw¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó( chmod 600 )¤È¤¹¤ë
+// POP?æ¡¼???????????ñ¤­¹???Í½?ê¤¬???ë¤¿???Ç¥Õ¥????È¤Ç¥æ¡¼?????Î¤ß¤?
+// rw?Ñ¡??ß¥Ã¥?????( chmod 600 )?È¤???
 #ifndef USE_WIN32
 if((chmod(filename,(S_IRUSR | S_IWUSR ))) != 0){
  g_print("Cannot Chmod Resource File %s!  Please check!!!\n",filename);
@@ -1966,7 +1966,7 @@ g_free(filename);
 }
 
 
-// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ÎÆÉ¤ß¹þ¤ß
+// ?Þ¥????Ã¥È¥Õ¥????????É¤ß¹???
 void ReadMascot(typMascot *mascot, gboolean def_flag)
 {
 ConfigFile *cfgfile;
@@ -1991,9 +1991,9 @@ mascot->click_total=0;
 mascot->flag_consow=FALSE;
 
 
-/// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ?Þ¥????Ã¥È¥Õ¥??????????Ö¤?Ãµ??
 
-// 2. Current¤«¤é
+// 2. Current????
 if(place==0){
  filename = g_strdup(mascot->file);
  if(access(filename,F_OK)==0){
@@ -2013,7 +2013,7 @@ place=4;
  }
 #endif
 
- // 1. ¥á¥Ë¥å¡¼¤ÈÆ±¤¸¾ì½ê
+ // 1. ???Ë¥å¡¼??Æ±??????
  if(place==0){
    if(mascot->menu_file){
 if(filename) g_free(filename);
@@ -2024,15 +2024,15 @@ if(access(filename,F_OK)==0){
 }
    }
  }
- 
+
  // 3. USER Directory
  if(place==0){
    if(filename) g_free(filename);
 #ifdef USE_WIN32
-   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->file), NULL);
 #else
-   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->file), NULL);
 #endif
    if(access(filename,F_OK)==0){
@@ -2041,7 +2041,7 @@ place=3;
  }
 }
 else{
- // 1. ¥á¥Ë¥å¡¼¤ÈÆ±¤¸¾ì½ê
+ // 1. ???Ë¥å¡¼??Æ±??????
  if(place==0){
    if(mascot->menu_file){
 if(filename) g_free(filename);
@@ -2052,15 +2052,15 @@ if(access(filename,F_OK)==0){
 }
    }
  }
- 
+
  // 3. USER Directory
  if(place==0){
    if(filename) g_free(filename);
 #ifdef USE_WIN32
-   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->file), NULL);
 #else
-   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
            my_basename(mascot->file), NULL);
 #endif
    if(access(filename,F_OK)==0){
@@ -2095,24 +2095,24 @@ if(place==0){
 }
 
 
-// ¥Þ¥¹¥³¥Ã¥È¤ÎUser Directory¤Ø¤Î¥¤¥ó¥¹¥È¡¼¥ë
+// ?Þ¥????Ã¥È¤?User Directory?Ø¤Î¥??ó¥¹¥È¡???
 if((place==1)||(place==2)||(place==4)){
  if((mascot->flag_install)&&(!FlagInstalledMenu)){
 #ifdef USE_COMMON
    if(mascot->flag_common){
 check_common_dir();
 if(filename2) g_free(filename2);
-filename2 = g_strconcat(COMMON_DIR, 
+filename2 = g_strconcat(COMMON_DIR,
          my_basename(mascot->file), NULL);
    }
    else{
 #endif
 if(filename2) g_free(filename2);
 #ifdef USE_WIN32
-filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
          my_basename(mascot->file), NULL);
 #else
-filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
          my_basename(mascot->file), NULL);
 #endif
 #ifdef USE_COMMON
@@ -2140,20 +2140,20 @@ common_mtime=statbuf.st_mtime;
    }
    if(filename2) g_free(filename2);
 #ifdef USE_WIN32
-   filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
             my_basename(mascot->file), NULL);
 #else
-   filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
             my_basename(mascot->file), NULL);
 #endif
    if(access(filename2,F_OK)==0){
 stat(filename2, &statbuf);
 user_mtime=statbuf.st_mtime;
    }
-   
+
    stat(filename, &statbuf);
    if((user_mtime==statbuf.st_mtime)&&(user_mtime<common_mtime)){
-// Menu file in User Dir is older 
+// Menu file in User Dir is older
 // than the corresponded one in Common Dir.
 if(mascot->cons_check_mode==CONS_MANUAL){
   create_cons_dialog(mascot,my_basename(filename),
@@ -2184,7 +2184,7 @@ if (cfgfile) {
  if(f_tmp0) g_free(f_tmp0);
  if(def_flag)      f_tmp0=g_strdup("Default-General");
  else              f_tmp0=g_strdup("General");
- 
+
 #ifdef USE_GTK2
  if(!xmms_cfg_read_string(cfgfile, f_tmp0, "code",&mascot->code))
    mascot->code = NULL;
@@ -2197,7 +2197,7 @@ if (cfgfile) {
    mascot->name=
 x_locale_to_utf8(mascot->name,-1,NULL,NULL,NULL,mascot->code);
    if(!mascot->name) mascot->name=g_strdup(_("(Invalid Character Code)"));
-   
+
  }
 #endif
  if(!xmms_cfg_read_string(cfgfile, f_tmp0, "copyright",&mascot->copyright))
@@ -2206,11 +2206,11 @@ x_locale_to_utf8(mascot->name,-1,NULL,NULL,NULL,mascot->code);
    flag_def_col=FALSE;
 
  // Focus Movement etc.
- 
+
  if(f_tmp0) g_free(f_tmp0);
  if(def_flag)      f_tmp0=g_strdup("Default-Move");
  else              f_tmp0=g_strdup("Move");
- 
+
  if(!xmms_cfg_read_int(cfgfile, f_tmp0, "move",&mascot->move))
    mascot->move=MOVE_FIX;
  if(!xmms_cfg_read_int(cfgfile, f_tmp0, "xoff",&mascot->xoff))
@@ -2432,7 +2432,7 @@ x_locale_to_utf8(mascot->name,-1,NULL,NULL,NULL,mascot->code);
    mascot->alpbal =mascot->def_alpbal;
 #endif
  }
-    
+
  if(!xmms_cfg_read_int(cfgfile, f_tmp0, "bg_r", &col_tmp))
    col_tmp=mascot->def_colbalbg->red;
  mascot->colbalbg->red=(guint)col_tmp;
@@ -2495,13 +2495,13 @@ x_locale_to_utf8(mascot->name,-1,NULL,NULL,NULL,mascot->code);
 
 
 #ifdef USE_BIFF
- // BiffÍÑ¥Ç¡¼¥¿
+ // Biff?Ñ¥Ç¡???
  if(f_tmp0) g_free(f_tmp0);
  if(def_flag)   f_tmp0=g_strdup("Default-Biff");
  else           f_tmp0=g_strdup("Biff");
 
  if(!xmms_cfg_read_string(cfgfile, f_tmp0, "pix-file",&filename0))
-   // BiffÍÑ²èÁü¥Õ¥¡¥¤¥ë
+   // Biff?Ñ²????Õ¥?????
    mascot->mail.pix_file=NULL;
  else
    mascot->mail.pix_file=FullPathPixmapFile(mascot, filename0);
@@ -2515,7 +2515,7 @@ x_locale_to_utf8(mascot->name,-1,NULL,NULL,NULL,mascot->code);
    mascot->mail.pix_y=0;
 
  if(!xmms_cfg_read_string(cfgfile, f_tmp0, "word",&mascot->mail.word))
-   // BiffÍÑ¤Õ¤­¤À¤·¥á¥Ã¥»¡¼¥¸
+   // Biff?Ñ¤Õ¤??À¤????Ã¥?????
    mascot->mail.word=NULL;
 #ifdef USE_GTK2
  if(mascot->mail.word){
@@ -2523,18 +2523,18 @@ x_locale_to_utf8(mascot->name,-1,NULL,NULL,NULL,mascot->code);
 x_locale_to_utf8(mascot->mail.word,
        -1,NULL,NULL,NULL,mascot->code);
    if(!mascot->mail.word) mascot->mail.word=g_strdup(_("(Invalid Character Code)"));
-   
+
  }
 #endif
 
  if(!xmms_cfg_read_string(cfgfile, f_tmp0, "sound",&mascot->mail.sound))
-   // BiffÃå¿®»þºÆÀ¸ÍÑ¥Õ¥¡¥¤¥ë
+   // Biff?å¿®????À¸?Ñ¥Õ¥?????
    mascot->mail.sound=NULL;
 #endif // USE_BIFF
 
 
 
-#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32) 
+#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32)
  // Alpha Percentage
  if(mascot->force_def_alpha){
    mascot->alpha_main=mascot->def_alpha_main;
@@ -2552,7 +2552,7 @@ x_locale_to_utf8(mascot->mail.word,
    if(f_tmp0) g_free(f_tmp0);
    if(def_flag)  f_tmp0=g_strdup("Default-Alpha");
    else          f_tmp0=g_strdup("Alpha");
-   
+
    if(!xmms_cfg_read_int(cfgfile, f_tmp0, "main",&mascot->alpha_main))
 mascot->alpha_main=mascot->def_alpha_main;
 #ifdef USE_BIFF
@@ -2572,13 +2572,13 @@ mascot->flag_clkfg=mascot->def_flag_clkfg;
  }
 #endif
 
-                                                                            
 
- // Pixmap¥Ç¡¼¥¿
+
+ // Pixmap?Ç¡???
  if(f_tmp0) g_free(f_tmp0);
  if(def_flag)   f_tmp0=g_strdup("Default-Pixmap");
  else           f_tmp0=g_strdup("Pixmap");
- 
+
  for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
    //if(mascot->sprites[i_pix].pixmap!=NULL){
    //g_object_unref(G_OBJECT(mascot->sprites[i_pix].pixmap));
@@ -2601,73 +2601,73 @@ break;
    else{
 mascot->sprites[i_pix].filename=
   FullPathPixmapFile(mascot, filename0);
-  
+
    }
 
  }
 
- // Animation¥Ç¡¼¥¿
- // ³Æ¥Ñ¥¿¡¼¥ó¤Î¥Õ¥ì¡¼¥à0¤Îpix¥Õ¥¡¥¤¥ëÌ¾¤¬¤Ê¤¤¤È¤¦¤Á¤­¤ê
+ // Animation?Ç¡???
+ // ?Æ¥Ñ¥??????Î¥Õ¥ì¡¼??0??pix?Õ¥?????Ì¾???Ê¤??È¤??Á¤???
  for(i_ptn=0;i_ptn<MAX_ANIME_PATTERN;i_ptn++){
    if(def_flag)  sprintf(tmp0, "Default-Pattern%02d", i_ptn);
    else          sprintf(tmp0, "Pattern%02d", i_ptn);
    if(!xmms_cfg_read_int(cfgfile, tmp0, "random_weight",
-          &mascot->random_weight[i_ptn])) 
-// ¥é¥ó¥À¥à¥¢¥Ë¥á½Å¤ß
+          &mascot->random_weight[i_ptn]))
+// ?????À¥à¥¢?Ë¥??Å¤?
 mascot->random_weight[i_ptn]=0;
    mascot->random_total+=mascot->random_weight[i_ptn];
 
    if(!xmms_cfg_read_int(cfgfile, tmp0, "click_weight",
           &mascot->click_weight[i_ptn]))
-// ¥¯¥ê¥Ã¥¯¥¢¥Ë¥á½Å¤ß
+// ?????Ã¥????Ë¥??Å¤?
 mascot->click_weight[i_ptn]=0;
    mascot->click_total+=mascot->click_weight[i_ptn];
-   
+
    if(!xmms_cfg_read_int(cfgfile, tmp0, "balloon_lxoff",
           &mascot->bal_lxoff[i_ptn]))
-// ¤Õ¤­¤À¤·¥ª¥Õ¥»¥Ã¥È X Left
+// ?Õ¤??À¤????Õ¥??Ã¥? X Left
 mascot->bal_lxoff[i_ptn]=0;
 
    if(!xmms_cfg_read_int(cfgfile, tmp0, "balloon_lyoff",
           &mascot->bal_lyoff[i_ptn]))
-// ¤Õ¤­¤À¤·¥ª¥Õ¥»¥Ã¥È Y Left
+// ?Õ¤??À¤????Õ¥??Ã¥? Y Left
 mascot->bal_lyoff[i_ptn]=0;
 
    if(!xmms_cfg_read_int(cfgfile, tmp0, "balloon_rxoff",
           &mascot->bal_rxoff[i_ptn]))
-// ¤Õ¤­¤À¤·¥ª¥Õ¥»¥Ã¥È X Right
+// ?Õ¤??À¤????Õ¥??Ã¥? X Right
 mascot->bal_rxoff[i_ptn]=0;
 
    if(!xmms_cfg_read_int(cfgfile, tmp0, "balloon_ryoff",
           &mascot->bal_ryoff[i_ptn]))
-// ¤Õ¤­¤À¤·¥ª¥Õ¥»¥Ã¥È Y Right
+// ?Õ¤??À¤????Õ¥??Ã¥? Y Right
 mascot->bal_ryoff[i_ptn]=0;
 
    if(!xmms_cfg_read_string(cfgfile, tmp0, "click_word",
             &mascot->click_word[i_ptn]))
-// ¥Ð¥ë¡¼¥óÉ½¼¨ÍÑ¥Æ¥­¥¹¥È
+// ?Ð¥ë¡¼??É½???Ñ¥Æ¥?????
 mascot->click_word[i_ptn]=NULL;
 #ifdef USE_GTK2
    else if(mascot->click_word[i_ptn]){
 mascot->click_word[i_ptn]=
   x_locale_to_utf8(mascot->click_word[i_ptn],
          -1,NULL,NULL,NULL,mascot->code);
-if(!mascot->click_word[i_ptn]) 
+if(!mascot->click_word[i_ptn])
   mascot->click_word[i_ptn]=g_strdup(_("(Invalid Character Code)"));
-         
+
    }
 #endif
 
    if(!xmms_cfg_read_string(cfgfile, tmp0, "click_sound",
             &mascot->click_sound[i_ptn]))
-// ¥¯¥ê¥Ã¥¯»þºÆÀ¸ÍÑ¥Õ¥¡¥¤¥ë
+// ?????Ã¥?????À¸?Ñ¥Õ¥?????
 mascot->click_sound[i_ptn]=NULL;
 
 
 #ifdef USE_SOCKMSG
    if(!xmms_cfg_read_string(cfgfile, tmp0, "duet_tgt",
             &mascot->duet_tgt[i_ptn]))
-// ¥Ç¥å¥¨¥Ã¥È¥¢¥Ë¥á
+// ?Ç¥å¥¨?Ã¥È¥??Ë¥?
 mascot->duet_tgt[i_ptn]=NULL;
 
    if(!xmms_cfg_read_int(cfgfile, tmp0, "duet_ptn",
@@ -2682,25 +2682,25 @@ mascot->duet_word[i_ptn]=NULL;
 mascot->duet_word[i_ptn]=
   x_locale_to_utf8(mascot->duet_word[i_ptn],
          -1,NULL,NULL,NULL,mascot->code);
-if(!mascot->duet_word[i_ptn]) 
+if(!mascot->duet_word[i_ptn])
   mascot->duet_word[i_ptn]=g_strdup(_("(Invalid Character Code)"));
-         
+
    }
 #endif
 
    if(!xmms_cfg_read_int(cfgfile, tmp0, "duet_delay",
           &mascot->duet_delay[i_ptn]))
 mascot->duet_delay[i_ptn]=DEF_DUET_DELAY;
-#endif  // USE_SOCKMSG      
+#endif  // USE_SOCKMSG
 
- 
-   // ³Æ¥Õ¥ì¡¼¥à
+
+   // ?Æ¥Õ¥ì¡¼??
    for(i_frm=0;i_frm<MAX_ANIME_FRAME;i_frm++){
-// pixmap¤¬ÆÉ¤á¤¿¤È¤­¤À¤±¥Õ¥ì¡¼¥à¥ë¡¼¥×
+// pixmap???É¤á¤¿?È¤??À¤??Õ¥ì¡¼???ë¡¼??
 sprintf(tmp, "pix%02d", i_frm);
 if(xmms_cfg_read_int(cfgfile, tmp0, tmp,
            &mascot->frame_pix[i_ptn][i_frm])){
-  
+
   sprintf(tmp, "min%02d", i_frm);
   if(!xmms_cfg_read_int(cfgfile, tmp0, tmp,
           &mascot->frame_min[i_ptn][i_frm]))
@@ -2718,8 +2718,8 @@ if(xmms_cfg_read_int(cfgfile, tmp0, tmp,
     mascot->frame_max[i_ptn][i_frm]=mascot->frame_min[i_ptn][i_frm];
     mascot->frame_min[i_ptn][i_frm]=i_tmp;
   }
-   
-  // Block Loop Next Frame ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤¿¤é min ¤Èmax¤òÆÉ¤à
+
+  // Block Loop Next Frame ?????ê¤µ???Æ¤????? min ??max???É¤?
   sprintf(tmp, "loop%02dnext", i_frm);
   if(xmms_cfg_read_int(cfgfile, tmp0, tmp,
           &mascot->frame_loop[i_ptn][i_frm].next)){
@@ -2754,13 +2754,13 @@ if(xmms_cfg_read_int(cfgfile, tmp0, tmp,
     mascot->frame_num[i_ptn]=MAX_ANIME_FRAME;
   }
 }
-else{  // pixmap»ØÄê¤¬¤Ê¤¤¤È¤­¤Ï½ªÎ»
+else{  // pixmap???ê¤¬?Ê¤??È¤??Ï½?Î»
   mascot->frame_pix[i_ptn][i_frm]=-1;
   mascot->frame_num[i_ptn]=i_frm;
   break;
 }
    }
-   
+
    if(i_frm==0){
 break;
    }
@@ -2785,7 +2785,7 @@ mascot->flag_consow=FALSE;
 }
 
 
-// ¥Þ¥¹¥³¥Ã¥È¤Î¥¤¥ó¥¹¥È¡¼¥ë :  ¥á¥Ë¥å¡¼¤Î¥¤¥ó¥¹¥È¡¼¥ë»þ¤Ë»ÈÍÑ
+// ?Þ¥????Ã¥È¤Î¥??ó¥¹¥È¡??? :  ???Ë¥å¡¼?Î¥??ó¥¹¥È¡??????Ë»???
 void MascotInstall(typMascot *mascot, gchar *mascotfile)
 {
 ConfigFile *cfgfile;
@@ -2797,9 +2797,9 @@ gchar *f_tmp0=NULL;
 gint place=0,p_place=0;
 
 
-/// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ?Þ¥????Ã¥È¥Õ¥??????????Ö¤?Ãµ??
 
-// 2. Current¤«¤é
+// 2. Current????
 if(place==0){
  filename = g_strdup(mascotfile);
  if(access(filename,F_OK)==0){
@@ -2818,7 +2818,7 @@ place=4;
  }
 #endif
 
- // 1. ¥á¥Ë¥å¡¼¤ÈÆ±¤¸¾ì½ê
+ // 1. ???Ë¥å¡¼??Æ±??????
  if(place==0){
    if(mascot->menu_file){
 filename = g_strconcat(my_dirname(mascot->menu_file),G_DIR_SEPARATOR_S,
@@ -2828,14 +2828,14 @@ if(access(filename,F_OK)==0){
 }
    }
  }
- 
+
  // 3. USER Directory
  if(place==0){
 #ifdef USE_WIN32
-   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
            mascotfile, NULL);
 #else
-   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
            mascotfile, NULL);
 #endif
    if(access(filename,F_OK)==0){
@@ -2844,7 +2844,7 @@ place=3;
  }
 }
 else{
- // 1. ¥á¥Ë¥å¡¼¤ÈÆ±¤¸¾ì½ê
+ // 1. ???Ë¥å¡¼??Æ±??????
  if(place==0){
    if(mascot->menu_file){
 filename = g_strconcat(my_dirname(mascot->menu_file),G_DIR_SEPARATOR_S,
@@ -2854,14 +2854,14 @@ if(access(filename,F_OK)==0){
 }
    }
  }
- 
+
  // 3. USER Directory
  if(place==0){
 #ifdef USE_WIN32
-   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
            mascotfile, NULL);
 #else
-   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+   filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
            mascotfile, NULL);
 #endif
    if(access(filename,F_OK)==0){
@@ -2904,10 +2904,10 @@ filename2 = g_strconcat(COMMON_DIR, mascotfile, NULL);
    else{
 #endif
 #ifdef USE_WIN32
-filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+filename2 = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
          mascotfile, NULL);
 #else
-filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+filename2 = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
          mascotfile, NULL);
 #endif
 #ifdef USE_COMMON
@@ -2921,22 +2921,22 @@ if(strcmp(filename,filename2)!=0){
    }
  }
 
- // Pixmap¥Ç¡¼¥¿
+ // Pixmap?Ç¡???
  if(mascot->flag_install){
    cfgfile = xmms_cfg_open_file(filename);
    if (cfgfile) {
-// Pixmap¥Ç¡¼¥¿
+// Pixmap?Ç¡???
 f_tmp0=g_strdup("Pixmap");
- 
+
 for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
   sprintf(tmp, "pixmap%02d", i_pix);
   p_place=0;
   if(xmms_cfg_read_string(cfgfile, f_tmp0, tmp, &pixfile)){
-    /// ²èÁü¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+    /// ?????Õ¥??????????Ö¤?Ãµ??
 
-    // 1. ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ÈÆ±¤¸¾ì½ê
+    // 1. ?Þ¥????Ã¥È¥Õ¥???????Æ±??????
     if(p_place==0){
-      pixfilename = g_strconcat(my_dirname(filename), 
+      pixfilename = g_strconcat(my_dirname(filename),
             G_DIR_SEPARATOR_S,pixfile, NULL);
       if(access(pixfilename,F_OK)==0){
    p_place=1;
@@ -2947,7 +2947,7 @@ for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
 #ifdef USE_COMMON
       // 4.  Common Directory
       if(p_place==0){
-   pixfilename = g_strconcat(COMMON_DIR,PIXDIR, 
+   pixfilename = g_strconcat(COMMON_DIR,PIXDIR,
               pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
      p_place=4;
@@ -2962,7 +2962,7 @@ for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
 #else
    pixfilename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,
 #endif
-              USER_DIR,PIXDIR, 
+              USER_DIR,PIXDIR,
               pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
      p_place=3;
@@ -2977,7 +2977,7 @@ for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
 #else
    pixfilename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,
 #endif
-              USER_DIR,PIXDIR, 
+              USER_DIR,PIXDIR,
               pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
      p_place=3;
@@ -2987,7 +2987,7 @@ for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
 #ifdef USE_COMMON
       // 4.  Common Directory
       if(p_place==0){
-   pixfilename = g_strconcat(COMMON_DIR,PIXDIR, 
+   pixfilename = g_strconcat(COMMON_DIR,PIXDIR,
               pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
      p_place=4;
@@ -2996,7 +2996,7 @@ for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
 #endif
     }
 
-      
+
     if(p_place==0){
 #ifdef GTK_MSG
       popup_message(POPUP_TIMEOUT*2,
@@ -3057,9 +3057,9 @@ gchar *filename=NULL;
 gint place=0;
 
 
-/// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ?Þ¥????Ã¥È¥Õ¥??????????Ö¤?Ãµ??
 
-// 2. Current¤«¤é
+// 2. Current????
 if(place==0){
  filename = g_strdup(mascotfile);
  if(access(filename,F_OK)==0){
@@ -3067,7 +3067,7 @@ if(place==0){
  }
 }
 
-// 1. ¥á¥Ë¥å¡¼¤ÈÆ±¤¸¾ì½ê
+// 1. ???Ë¥å¡¼??Æ±??????
 if(place==0){
  if(mascot->menu_file){
    filename = g_strconcat(my_dirname(mascot->menu_file),G_DIR_SEPARATOR_S,
@@ -3081,10 +3081,10 @@ place=1;
 // 3. USER Directory
 if(place==0){
 #ifdef USE_WIN32
- filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+ filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
          mascotfile, NULL);
 #else
- filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+ filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
          mascotfile, NULL);
 #endif
  if(access(filename,F_OK)==0){
@@ -3133,9 +3133,9 @@ gboolean flag_mf=FALSE;
 
 
 
-/// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ?Þ¥????Ã¥È¥Õ¥??????????Ö¤?Ãµ??
 
-// 2. Current¤«¤é
+// 2. Current????
 if(place==0){
  filename = g_strdup(mascotfile);
  if(access(filename,F_OK)==0){
@@ -3143,7 +3143,7 @@ if(place==0){
  }
 }
 
-// 1. ¥á¥Ë¥å¡¼¤ÈÆ±¤¸¾ì½ê
+// 1. ???Ë¥å¡¼??Æ±??????
 if(place==0){
  if(mascot->menu_file){
    filename = g_strconcat(my_dirname(mascot->menu_file),G_DIR_SEPARATOR_S,
@@ -3157,10 +3157,10 @@ place=1;
 // 3. USER Directory
 if(place==0){
 #ifdef USE_WIN32
- filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR, 
+ filename = g_strconcat(get_win_home(),G_DIR_SEPARATOR_S,USER_DIR,
          mascotfile, NULL);
 #else
- filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR, 
+ filename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,USER_DIR,
          mascotfile, NULL);
 #endif
  if(access(filename,F_OK)==0){
@@ -3183,12 +3183,12 @@ if(place!=0){
  cfgfile = xmms_cfg_open_file(filename);
 
  if (cfgfile) {
-   // Pixmap00¤Î»ØÄê¤¬¤È¤ì¤ì¤Ð¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ÈÇ§Äê
+   // Pixmap00?Î»??ê¤¬?È¤????Ð¥Þ¥????Ã¥È¥Õ¥???????Ç§??
    f_tmp0=g_strdup("Pixmap");
-   
+
    if(xmms_cfg_read_string(cfgfile, f_tmp0, "pixmap00",&pix0))
 flag_mf=TRUE;
-   
+
    xmms_cfg_free(cfgfile);
  }
 }
@@ -3210,9 +3210,9 @@ gchar *pixfilename=NULL, *pixfilename0=NULL, *pixfilename2=NULL;
 gint p_place=0;
 
 
-/// ²èÁü¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ?????Õ¥??????????Ö¤?Ãµ??
 
-// 2. ¥Õ¥ë¥Ñ¥¹
+// 2. ?Õ¥??Ñ¥?
 if(p_place==0){
  pixfilename = g_strdup(pixfile);
  if(access(pixfilename,F_OK)==0){
@@ -3220,9 +3220,9 @@ if(p_place==0){
  }
 }
 
-// 1. ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ÈÆ±¤¸¾ì½ê
+// 1. ?Þ¥????Ã¥È¥Õ¥???????Æ±??????
 if(p_place==0){
- pixfilename = g_strconcat(my_dirname(mascot->file), 
+ pixfilename = g_strconcat(my_dirname(mascot->file),
             G_DIR_SEPARATOR_S,pixfile, NULL);
  if(access(pixfilename,F_OK)==0){
    p_place=1;
@@ -3233,7 +3233,7 @@ if(mascot->flag_ow){
 #ifdef USE_COMMON
  // 4.  Common Data Directory
  if(p_place==0){
-   pixfilename = g_strconcat(COMMON_DIR,PIXDIR, 
+   pixfilename = g_strconcat(COMMON_DIR,PIXDIR,
          pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
 p_place=4;
@@ -3248,7 +3248,7 @@ p_place=4;
 #else
    pixfilename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,
 #endif
-         USER_DIR,PIXDIR, 
+         USER_DIR,PIXDIR,
          pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
 p_place=3;
@@ -3263,7 +3263,7 @@ else{
 #else
    pixfilename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,
 #endif
-         USER_DIR,PIXDIR, 
+         USER_DIR,PIXDIR,
          pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
 p_place=3;
@@ -3273,7 +3273,7 @@ p_place=3;
 #ifdef USE_COMMON
  // 4.  Common Data Directory
  if(p_place==0){
-   pixfilename = g_strconcat(COMMON_DIR,PIXDIR, 
+   pixfilename = g_strconcat(COMMON_DIR,PIXDIR,
          pixfile, NULL);
    if(access(pixfilename,F_OK)==0){
 p_place=4;
@@ -3282,7 +3282,7 @@ p_place=4;
 #endif
 }
 
-      
+
 if(p_place==0){
 #ifdef GTK_MSG
  popup_message(POPUP_TIMEOUT*2,
@@ -3296,7 +3296,7 @@ if(p_place==0){
  exit(1);
 }
 
-// 3,4¤Ë¤Ê¤¤¾ì¹ç¤ÏUSER Pixmap Dir¤Ë¥³¥Ô¡¼¤¹¤ë
+// 3,4?Ë¤Ê¤???????USER Pixmap Dir?Ë¥??Ô¡?????
 if((p_place==1)||(p_place==2)){
  if((mascot->flag_install)&&(!FlagInstalledMenu)){
 #ifdef USE_COMMON
@@ -3359,16 +3359,16 @@ return(pixfilename);
 }
 
 
-/// ¥µ¥¦¥ó¥É¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ???????É¥Õ¥??????????Ö¤?Ãµ??
 gchar *FullPathSoundFile(typMascot *mascot, gchar *wavfile, gboolean i_fl){
 gchar *wavfilename=NULL,*wavfilename2=NULL;
 gint s_place=0;
 
 if(wavfile==NULL) return(NULL);
 
-/// ²»À¼¥Õ¥¡¥¤¥ë¤ò½çÈÖ¤ÇÃµ¤¹
+/// ??À¼?Õ¥??????????Ö¤?Ãµ??
 
-// 2. ¥Õ¥ë¥Ñ¥¹
+// 2. ?Õ¥??Ñ¥?
 if(s_place==0){
  wavfilename = g_strdup(wavfile);
  if(access(wavfilename,F_OK)==0){
@@ -3376,9 +3376,9 @@ if(s_place==0){
  }
 }
 
-// 1. ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤ÈÆ±¤¸¾ì½ê
+// 1. ?Þ¥????Ã¥È¥Õ¥???????Æ±??????
 if(s_place==0){
- wavfilename = g_strconcat(my_dirname(mascot->file), 
+ wavfilename = g_strconcat(my_dirname(mascot->file),
             G_DIR_SEPARATOR_S,wavfile, NULL);
  if(access(wavfilename,F_OK)==0){
    s_place=1;
@@ -3389,7 +3389,7 @@ if(mascot->flag_ow){
 #ifdef USE_COMMON
  // 4.  Common Data Directory
  if(s_place==0){
-   wavfilename = g_strconcat(COMMON_DIR,SOUNDDIR, 
+   wavfilename = g_strconcat(COMMON_DIR,SOUNDDIR,
          wavfile, NULL);
    if(access(wavfilename,F_OK)==0){
 s_place=4;
@@ -3404,7 +3404,7 @@ s_place=4;
 #else
    wavfilename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,
 #endif
-         USER_DIR,SOUNDDIR, 
+         USER_DIR,SOUNDDIR,
          wavfile, NULL);
    if(access(wavfilename,F_OK)==0){
 s_place=3;
@@ -3419,17 +3419,17 @@ else{
 #else
    wavfilename = g_strconcat(get_home_dir(),G_DIR_SEPARATOR_S,
 #endif
-         USER_DIR,SOUNDDIR, 
+         USER_DIR,SOUNDDIR,
          wavfile, NULL);
    if(access(wavfilename,F_OK)==0){
 s_place=3;
    }
  }
- 
+
 #ifdef USE_COMMON
  // 4.  Common Data Directory
  if(s_place==0){
-   wavfilename = g_strconcat(COMMON_DIR,SOUNDDIR, 
+   wavfilename = g_strconcat(COMMON_DIR,SOUNDDIR,
          wavfile, NULL);
    if(access(wavfilename,F_OK)==0){
 s_place=4;
@@ -3438,7 +3438,7 @@ s_place=4;
 #endif
 }
 
-      
+
 if(s_place==0){
 #ifdef GTK_MSG
  popup_message(POPUP_TIMEOUT*2,
@@ -3452,7 +3452,7 @@ if(s_place==0){
  exit(1);
 }
 
-// 3,4¤Ë¤Ê¤¤¾ì¹ç¤ÏUSER Sound Dir¤Ë¥³¥Ô¡¼¤¹¤ë
+// 3,4?Ë¤Ê¤???????USER Sound Dir?Ë¥??Ô¡?????
 if((s_place==1)||(s_place==2)){
  if(((mascot->flag_install)&&(!FlagInstalledMenu))||(i_fl)){
 #ifdef USE_COMMON
@@ -3487,15 +3487,15 @@ return(wavfilename);
 }
 
 
-/// ¥ê¥½¡¼¥¹¥Õ¥¡¥¤¥ë¤òÃµ¤¹
-// ¥Õ¥ë¥Ñ¥¹¤Ç¤«¤«¤ì¤Æ¤¤¤Æ¥¢¥¯¥»¥¹¤Ç¤­¤ë¤«
-// ¤½¤¦¤Ç¤Ê¤±¤ì¤Ð USERDIR²¼¤ÇÃµ¤¹
-// ¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ð¥Ç¥Õ¥©¥ë¥È¤ÎRCFILE¤òÊÖ¤»¤Ð¤è¤¤
+/// ?ê¥½?????Õ¥???????Ãµ??
+// ?Õ¥??Ñ¥??Ç¤??????Æ¤??Æ¥????????Ç¤??ë¤«
+// ?????Ç¤Ê¤????? USERDIR????Ãµ??
+// ???Ä¤????Ê¤????Ð¥Ç¥Õ¥????È¤?RCFILE???Ö¤??Ð¤è¤¤
 gchar  *FullPathRcFile(gchar *rcfile){
 gchar *filename1;
 
- 
-// 1. ¥Þ¥¹¥³¥Ã¥È file¤ÈÆ±°ì Directory
+
+// 1. ?Þ¥????Ã¥? file??Æ±?? Directory
 if(access(rcfile,F_OK)==0){
  filename1 = g_strdup(rcfile);
 }
@@ -3521,7 +3521,7 @@ return(filename1);
 }
 
 
-// ¥Þ¥¹¥³¥Ã¥ÈÌ¾¤ÎÆÉ¤ß¹þ¤ß
+// ?Þ¥????Ã¥?Ì¾???É¤ß¹???
 gchar * ReadMascotName(typMascot *mascot, gchar *mascotfile)
 {
 ConfigFile *cfgfile;
@@ -3537,7 +3537,7 @@ cfgfile = xmms_cfg_open_file(filename);
 if (cfgfile) {
  // General
  f_tmp0=g_strdup("General");
- 
+
 #ifdef USE_GTK2
  if(!xmms_cfg_read_string(cfgfile, f_tmp0, "code",&code))
    code = NULL;
@@ -3548,11 +3548,11 @@ if (cfgfile) {
 #ifdef USE_GTK2
  if(mascotname){
    mascotname=x_locale_to_utf8(mascotname,-1,NULL,NULL,NULL,code);
-   if(!mascotname) 
+   if(!mascotname)
 mascotname=g_strdup(_("(Invalid Character Code)"));
  }
 #endif
- 
+
  xmms_cfg_free(cfgfile);
 }
 g_free(f_tmp0);
@@ -3563,7 +3563,7 @@ return(mascotname);
 }
 
 
-// ¥Þ¥¹¥³¥Ã¥È¥Õ¥¡¥¤¥ë¤Î½ñ¤­¹þ¤ß
+// ?Þ¥????Ã¥È¥Õ¥??????Î½ñ¤­¹???
 void SaveMascot(typMascot *mascot, gboolean def_flag)
 {
 ConfigFile *cfgfile;
@@ -3581,7 +3581,7 @@ filename = g_strdup(mascot->file);
 cfgfile = xmms_cfg_open_file(filename);
 if (!cfgfile)  cfgfile = xmms_cfg_new();
 
-// General 
+// General
 if(def_flag) f_tmp=g_strdup("Default-General");
 else         f_tmp=g_strdup("General");
 
@@ -3800,12 +3800,12 @@ else
 
 
 #ifdef USE_BIFF
-// Biff¥Ç¡¼¥¿
+// Biff?Ç¡???
 if(def_flag) f_tmp=g_strdup("Default-Biff");
 else         f_tmp=g_strdup("Biff");
 
-// BiffÍÑ²èÁü¥Õ¥¡¥¤¥ë
-if(mascot->mail.pix_file) 
+// Biff?Ñ²????Õ¥?????
+if(mascot->mail.pix_file)
  xmms_cfg_write_string(cfgfile, f_tmp, "pix-file",mascot->mail.pix_file);
 else
  xmms_cfg_remove_key(cfgfile,f_tmp, "pix-file");
@@ -3814,7 +3814,7 @@ xmms_cfg_write_int(cfgfile, f_tmp, "pix-pos",mascot->mail.pix_pos);
 xmms_cfg_write_int(cfgfile, f_tmp, "pix-x",mascot->mail.pix_x);
 xmms_cfg_write_int(cfgfile, f_tmp, "pix-y",mascot->mail.pix_y);
 
-// BiffÍÑ¤Õ¤­¤À¤·¥á¥Ã¥»¡¼¥¸
+// Biff?Ñ¤Õ¤??À¤????Ã¥?????
 #ifdef USE_GTK2
 if(mascot->mail.word){
  tmp_conv=
@@ -3822,26 +3822,26 @@ if(mascot->mail.word){
  xmms_cfg_write_string(cfgfile, f_tmp, "word",tmp_conv);
 }
 #else
-if(mascot->mail.word) 
+if(mascot->mail.word)
  xmms_cfg_write_string(cfgfile, f_tmp, "word",mascot->mail.word);
 #endif
 else
  xmms_cfg_remove_key(cfgfile,f_tmp, "word");
 
-// BiffÃå¿®»þºÆÀ¸²»À¼¥Õ¥¡¥¤¥ë
-if(mascot->mail.sound) 
+// Biff?å¿®????À¸??À¼?Õ¥?????
+if(mascot->mail.sound)
  xmms_cfg_write_string(cfgfile, f_tmp, "sound",mascot->mail.sound);
 else
  xmms_cfg_remove_key(cfgfile, f_tmp, "sound");
 #endif  // USE_BIFF
 
 
-#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32) 
+#if GTK_CHECK_VERSION(2,12,0) || defined(USE_CAIRO) || defined(USE_WIN32)
  // Alpha Percentage
 if(!mascot->force_def_alpha){
  if(def_flag)  f_tmp=g_strdup("Default-Alpha");
  else          f_tmp=g_strdup("Alpha");
- 
+
  xmms_cfg_write_int(cfgfile, f_tmp, "main",mascot->alpha_main);
 #ifdef USE_BIFF
  xmms_cfg_write_int(cfgfile, f_tmp, "biff",mascot->alpha_biff);
@@ -3854,16 +3854,16 @@ if(!mascot->force_def_alpha){
 #endif
 }
 #endif
-                                                                            
 
 
-// Pixmap¥Ç¡¼¥¿
+
+// Pixmap?Ç¡???
 if(def_flag) f_tmp=g_strdup("Default-Pixmap");
 else         f_tmp=g_strdup("Pixmap");
 
 for(i_pix=0;i_pix<MAX_PIXMAP;i_pix++){
  sprintf(tmp, "pixmap%02d", i_pix);
- 
+
  if(mascot->sprites[i_pix].filename){
    xmms_cfg_write_string(cfgfile, f_tmp, tmp,
           (char *)my_basename(mascot->sprites[i_pix].filename));
@@ -3875,16 +3875,16 @@ xmms_cfg_remove_key(cfgfile, f_tmp, tmp);
    }
    break;
  }
-   
+
 }
 
-// Animation¥Ç¡¼¥¿
+// Animation?Ç¡???
 for(i_ptn=0;i_ptn<MAX_ANIME_PATTERN;i_ptn++){
- 
+
 if(def_flag) sprintf(tmp0, "Default-Pattern%02d", i_ptn);
 else         sprintf(tmp0, "Pattern%02d", i_ptn);
- 
- if(mascot->random_weight[i_ptn]!=0){ // ¥é¥ó¥À¥à¥¢¥Ë¥á½Å¤ß
+
+ if(mascot->random_weight[i_ptn]!=0){ // ?????À¥à¥¢?Ë¥??Å¤?
    xmms_cfg_write_int(cfgfile, tmp0, "random_weight",
        mascot->random_weight[i_ptn]);
  }
@@ -3892,46 +3892,46 @@ else         sprintf(tmp0, "Pattern%02d", i_ptn);
    xmms_cfg_remove_key(cfgfile,tmp0, "random_weight");
  }
 
- if(mascot->click_weight[i_ptn]!=0){ // ¥¯¥ê¥Ã¥¯¥¢¥Ë¥á½Å¤ß
+ if(mascot->click_weight[i_ptn]!=0){ // ?????Ã¥????Ë¥??Å¤?
    xmms_cfg_write_int(cfgfile, tmp0, "click_weight",
        mascot->click_weight[i_ptn]);
  }
  else{
    xmms_cfg_remove_key(cfgfile,tmp0, "click_weight");
  }
- 
- if(mascot->bal_lxoff[i_ptn]!=0){ // ¤Õ¤­¤À¤· offset X[º¸]
+
+ if(mascot->bal_lxoff[i_ptn]!=0){ // ?Õ¤??À¤? offset X[??]
    xmms_cfg_write_int(cfgfile, tmp0, "balloon_lxoff",
        mascot->bal_lxoff[i_ptn]);
  }
  else{
    xmms_cfg_remove_key(cfgfile,tmp0, "balloon_lxoff");
  }
- 
- if(mascot->bal_lyoff[i_ptn]!=0){ // ¤Õ¤­¤À¤· offset Y[º¸]
+
+ if(mascot->bal_lyoff[i_ptn]!=0){ // ?Õ¤??À¤? offset Y[??]
    xmms_cfg_write_int(cfgfile, tmp0, "balloon_lyoff",
        mascot->bal_lyoff[i_ptn]);
  }
  else{
    xmms_cfg_remove_key(cfgfile,tmp0, "balloon_lyoff");
  }
- 
- if(mascot->bal_rxoff[i_ptn]!=0){ // ¤Õ¤­¤À¤· offset X[±¦]
+
+ if(mascot->bal_rxoff[i_ptn]!=0){ // ?Õ¤??À¤? offset X[??]
    xmms_cfg_write_int(cfgfile, tmp0, "balloon_rxoff",
        mascot->bal_rxoff[i_ptn]);
  }
  else{
    xmms_cfg_remove_key(cfgfile,tmp0, "balloon_rxoff");
  }
- 
- if(mascot->bal_ryoff[i_ptn]!=0){ // ¤Õ¤­¤À¤· offset Y[±¦]
+
+ if(mascot->bal_ryoff[i_ptn]!=0){ // ?Õ¤??À¤? offset Y[??]
    xmms_cfg_write_int(cfgfile, tmp0, "balloon_ryoff",
        mascot->bal_ryoff[i_ptn]);
  }
  else{
    xmms_cfg_remove_key(cfgfile,tmp0, "balloon_ryoff");
  }
- 
+
 #ifdef USE_GTK2
 if(mascot->click_word[i_ptn]){
  tmp_conv=
@@ -3939,7 +3939,7 @@ if(mascot->click_word[i_ptn]){
  xmms_cfg_write_string(cfgfile, tmp0, "click_word",tmp_conv);
 }
 #else
- if(mascot->click_word[i_ptn]){ // ¥Ð¥ë¡¼¥óÍÑ¥Æ¥­¥¹¥È
+ if(mascot->click_word[i_ptn]){ // ?Ð¥ë¡¼???Ñ¥Æ¥?????
    xmms_cfg_write_string(cfgfile, tmp0, "click_word",
           (gchar *)mascot->click_word[i_ptn]);
  }
@@ -3947,8 +3947,8 @@ if(mascot->click_word[i_ptn]){
  else{
    xmms_cfg_remove_key(cfgfile,tmp0, "click_word");
  }
- 
- if(mascot->click_sound[i_ptn]){ // ¥¯¥ê¥Ã¥¯»þºÆÀ¸²»À¼¥Õ¥¡¥¤¥ë
+
+ if(mascot->click_sound[i_ptn]){ // ?????Ã¥?????À¸??À¼?Õ¥?????
    xmms_cfg_write_string(cfgfile, tmp0, "click_sound",
           (gchar *)mascot->click_sound[i_ptn]);
  }
@@ -3957,7 +3957,7 @@ if(mascot->click_word[i_ptn]){
  }
 
 #ifdef USE_SOCKMSG
- if(mascot->duet_tgt[i_ptn]){ // ¥Ç¥å¥¨¥Ã¥È¥¢¥Ë¥á
+ if(mascot->duet_tgt[i_ptn]){ // ?Ç¥å¥¨?Ã¥È¥??Ë¥?
    xmms_cfg_write_string(cfgfile, tmp0, "duet_tgt",
           (gchar *)mascot->duet_tgt[i_ptn]);
    xmms_cfg_write_int(cfgfile, tmp0, "duet_ptn",
@@ -3969,7 +3969,7 @@ tmp_conv=
 xmms_cfg_write_string(cfgfile, tmp0, "duet_word",tmp_conv);
    }
 #else
-   if(mascot->duet_word[i_ptn]){ 
+   if(mascot->duet_word[i_ptn]){
 xmms_cfg_write_string(cfgfile, tmp0, "duet_word",
             (gchar *)mascot->duet_word[i_ptn]);
    }
@@ -3983,10 +3983,10 @@ xmms_cfg_write_string(cfgfile, tmp0, "duet_word",
    xmms_cfg_remove_key(cfgfile,tmp0, "duet_word");
    xmms_cfg_remove_key(cfgfile,tmp0, "duet_delay");
  }
- 
+
 #endif // USE_SOCKMSG
- 
- // ³Æ¥Õ¥ì¡¼¥à
+
+ // ?Æ¥Õ¥ì¡¼??
  for(i_frm=0;i_frm<MAX_ANIME_FRAME;i_frm++){
    if(mascot->frame_pix[i_ptn][i_frm]!=-1){
 // Pixmap
@@ -4003,7 +4003,7 @@ xmms_cfg_write_int(cfgfile, tmp0, tmp,
 sprintf(tmp, "max%02d", i_frm);
 xmms_cfg_write_int(cfgfile, tmp0, tmp,
          mascot->frame_max[i_ptn][i_frm]);
-   
+
 if(mascot->frame_loop[i_ptn][i_frm].next!=-1){
   // Block Loop Next Frame
   sprintf(tmp, "loop%02dnext", i_frm);
@@ -4014,7 +4014,7 @@ if(mascot->frame_loop[i_ptn][i_frm].next!=-1){
   sprintf(tmp, "loop%02dmin", i_frm);
   xmms_cfg_write_int(cfgfile, tmp0, tmp,
            mascot->frame_loop[i_ptn][i_frm].min);
-  
+
   // Block Loop Maximum
   sprintf(tmp, "loop%02dmax", i_frm);
   xmms_cfg_write_int(cfgfile, tmp0, tmp,
@@ -4052,7 +4052,7 @@ xmms_cfg_remove_key(cfgfile,tmp0,tmp);
    }
  }
 }
- 
+
 if(!def_flag){
  if(!xmms_cfg_read_string(cfgfile, "Default-General","prog_ver",&f_tmp)){
    xmms_cfg_write_file(cfgfile, filename);
@@ -4077,7 +4077,7 @@ g_free(tmp_conv);
 }
 
 
-// ¥ê¥ê¡¼¥¹ÍÑ¥Þ¥¹¥³¥Ã¥È¤Î¥Õ¥©¥ó¥È¾ðÊó¤Î½üµî¤â¤·¤¯¤ÏÄÉ²Ã
+// ???ê¡¼???Ñ¥Þ¥????Ã¥È¤Î¥Õ¥????È¾????Î½????â¤·?????É²?
 void SetFontForReleaseData(typMascot *mascot, gboolean def_flag,
          gint field, gboolean set_flag)
 {
@@ -4124,7 +4124,7 @@ g_free(filename);
 }
 
 
-// ¥ê¥ê¡¼¥¹ÍÑ¥Þ¥¹¥³¥Ã¥È¤«¤é¤Î¿§¾ðÊó¤Î½üµî
+// ???ê¡¼???Ñ¥Þ¥????Ã¥È¤????Î¿??????Î½???
 void SetColorForReleaseData(typMascot *mascot, gboolean def_flag,
           gint field, gboolean set_flag)
 {
@@ -4237,7 +4237,7 @@ int i_ptn,i_frm;
 #ifdef USE_SOCKMSG
 SockMsgInitResult sockres;
 
-// ¥Þ¥¹¥³¥Ã¥È¥¢¥¯¥·¥ç¥óÍÑ ¥½¥±¥Ã¥È
+// ?Þ¥????Ã¥È¥??????????? ?????Ã¥?
 if(mascot->duet_open){
  duet_sv_done(mascot->duet_file,TRUE);
  mascot->duet_open=FALSE;
@@ -4249,7 +4249,7 @@ if(mascot->duet_open){
    mascot->duet_open=FALSE;
    break;
  case SOCKMSG_OPENED:
-   // ¤¹¤Ç¤Ë¥½¥±¥Ã¥È¤¬Â¸ºß¡£
+   // ???Ç¤Ë¥????Ã¥È¤?Â¸?ß¡?
    //mascot->duet_open=FALSE;
    mascot->duet_open=TRUE;
    mascot->duet_file=g_strdup(my_basename(mascot->file));
@@ -4376,7 +4376,7 @@ Window rootwin;
 #endif
 
 int x_root, y_root, width_root, height_root, border, depth;
-// Root Window¤ÎÂç¤­¤µ¼èÆÀ
+// Root Window???ç¤­??????
 
 #ifdef USE_WIN32
 width_root=GetSystemMetrics(SM_CXVIRTUALSCREEN);
@@ -4473,7 +4473,7 @@ i_opt = 1;
 while((i_opt < argc)&&(valid==1)) {
  // --- X offset
  if((strcmp(argv[i_opt],"-o") == 0)||
-    (strcmp(argv[i_opt],"--offset") == 0)){ 
+    (strcmp(argv[i_opt],"--offset") == 0)){
    if(i_opt+1 < argc ) {
 char* chkRF;
 i_opt++;
@@ -4494,7 +4494,7 @@ valid = 0;
  }
  // --- Menu File
  else if((strcmp(argv[i_opt],"-m") == 0)||
-    (strcmp(argv[i_opt],"--menu") == 0)){ 
+    (strcmp(argv[i_opt],"--menu") == 0)){
    if(i_opt+1 < argc ) {
 i_opt++;
 mascot->menu_file=g_strdup(argv[i_opt]);
@@ -4505,7 +4505,7 @@ valid = 0;
    }
  }
  // --- Install Menu File
- else if((strcmp(argv[i_opt],"--install-user-menu") == 0)){ 
+ else if((strcmp(argv[i_opt],"--install-user-menu") == 0)){
    if(i_opt+1 < argc ) {
 mascot->flag_install=TRUE;
 mascot->flag_common=FALSE;
@@ -4520,7 +4520,7 @@ valid = 0;
    }
  }
  // --- Install Mascot File
- else if((strcmp(argv[i_opt],"--install-user-mascot") == 0)){ 
+ else if((strcmp(argv[i_opt],"--install-user-mascot") == 0)){
    if(i_opt+1 < argc ) {
 mascot->flag_install=TRUE;
 mascot->flag_common=FALSE;
@@ -4538,7 +4538,7 @@ valid = 0;
  }
 #ifdef USE_COMMON
  // --- Install Menu File to Common Directory
- else if((strcmp(argv[i_opt],"--install-common-menu") == 0)){ 
+ else if((strcmp(argv[i_opt],"--install-common-menu") == 0)){
    if(i_opt+1 < argc ) {
 mascot->flag_install=TRUE;
 mascot->flag_common=TRUE;
@@ -4553,7 +4553,7 @@ valid = 0;
    }
  }
  // --- Install Mascot File to Common Directory
- else if((strcmp(argv[i_opt],"--install-common-mascot") == 0)){ 
+ else if((strcmp(argv[i_opt],"--install-common-mascot") == 0)){
    if(i_opt+1 < argc ) {
 mascot->flag_install=TRUE;
 mascot->flag_common=TRUE;
@@ -4572,7 +4572,7 @@ valid = 0;
 #endif
  // --- Magnification [%]
  else if((strcmp(argv[i_opt],"-mg") == 0)||
-    (strcmp(argv[i_opt],"--mag") == 0)){ 
+    (strcmp(argv[i_opt],"--mag") == 0)){
    if(i_opt+1 < argc ) {
 i_opt++;
 mascot->magnify=atoi(argv[i_opt]);
@@ -4586,7 +4586,7 @@ valid = 0;
  }
  // --- Interporation Style [%]
  else if((strcmp(argv[i_opt],"-i") == 0)||
-    (strcmp(argv[i_opt],"--ip-style") == 0)){ 
+    (strcmp(argv[i_opt],"--ip-style") == 0)){
    if(i_opt+1 < argc ) {
 i_opt++;
 mascot->ip_style=atoi(argv[i_opt]);
@@ -4599,19 +4599,19 @@ i_opt++;
 valid = 0;
    }
  }
- // ¼«Æ°¥¤¥ó¥¹¥È¡¼¥ë ON  
+ // ??Æ°???ó¥¹¥È¡??? ON
  else if ((strcmp(argv[i_opt], "-a") == 0)||
      (strcmp(argv[i_opt], "--auto-install") == 0)){
    mascot->flag_install=TRUE;
    i_opt++;
  }
- // ¼«Æ°¥¤¥ó¥¹¥È¡¼¥ë OFF
+ // ??Æ°???ó¥¹¥È¡??? OFF
  else if ((strcmp(argv[i_opt], "-na") == 0)||
      (strcmp(argv[i_opt], "--no-auto-install") == 0)){
    mascot->flag_install=FALSE;
    i_opt++;
  }
- // ¶¯À©¾å½ñ¤­¼«Æ°¥¤¥ó¥¹¥È¡¼¥ë ON  
+ // ??À©???ñ¤­¼?Æ°???ó¥¹¥È¡??? ON
  else if ((strcmp(argv[i_opt], "-O") == 0)||
      (strcmp(argv[i_opt], "--over-write") == 0)){
    mascot->flag_ow=TRUE;
@@ -4619,14 +4619,14 @@ valid = 0;
    i_opt++;
  }
 #ifdef USE_BIFF
- // Biffµ¡Ç½ ON  
+ // Biff??Ç½ ON
  else if ((strcmp(argv[i_opt], "-b") == 0)||
      (strcmp(argv[i_opt], "--biff") == 0)){
    mascot->mail.flag=TRUE;
    i_opt++;
  }
 #endif
- // »þÊóµ¡Ç½ ON  
+ // ??????Ç½ ON
  else if ((strcmp(argv[i_opt], "-s") == 0)||
      (strcmp(argv[i_opt], "--signal") == 0)){
    mascot->signal.flag=TRUE;
@@ -4634,7 +4634,7 @@ valid = 0;
  }
  // --- Resource File
  else if((strcmp(argv[i_opt],"-r") == 0)||
-    (strcmp(argv[i_opt],"--rcfile") == 0)){ 
+    (strcmp(argv[i_opt],"--rcfile") == 0)){
    if(i_opt+1 < argc ) {
 i_opt++;
 mascot->rcfile=g_strconcat(argv[i_opt],NULL);
@@ -4663,10 +4663,10 @@ valid = 0;
    i_opt++;
  }
 #endif  // USE_SOCKMSG
- // Äê·¿°Ê³°¤Î¥ª¥×¥·¥ç¥ó
+ // ?ê·¿?Ê³??Î¥??×¥?????
  else{
-   // MascotFile¤Ç¤¢¤ë¤«¤É¤¦¤«¤Î¥Á¥§¥Ã¥¯
-   // Mascot->file ¤Ø¤Î½ñ¤­¹þ¤ß¤ò¹Ô¤¦
+   // MascotFile?Ç¤??ë¤«?É¤????Î¥Á¥??Ã¥?
+   // Mascot->file ?Ø¤Î½ñ¤­¹??ß¤??Ô¤?
    if(!FullPathMascotCheck(mascot,argv[i_opt])){
 g_print(_("Option \"%s\" is not found. Ignoring...\n"),argv[i_opt]);
    }
@@ -4686,7 +4686,7 @@ int valid=1;
 
 i_opt = 1;
 while((i_opt < argc)&&(valid==1)) {
- // --- ¥Ø¥ë¥×¥¹¥¤¥Ã¥Á
+ // --- ?Ø¥??×¥????Ã¥?
  if ((strcmp(argv[i_opt], "-h") == 0) ||
      (strcmp(argv[i_opt], "--help") == 0)) {
    i_opt++;
@@ -4694,15 +4694,15 @@ while((i_opt < argc)&&(valid==1)) {
    exit(0);
  }
 #ifdef USE_COMMON
- // --- ¶¦ÄÌ¥Ç¥£¥ì¥¯¥È¥ê¤ÎÉ½¼¨
+ // --- ???Ì¥Ç¥??ì¥¯?È¥???É½??
  else if((strcmp(argv[i_opt],"-c") == 0)||
-    (strcmp(argv[i_opt],"--common-dir") == 0)){ 
+    (strcmp(argv[i_opt],"--common-dir") == 0)){
    print_common_dir();
  }
 #endif
- // --- ¥ê¥½¡¼¥¹¥Õ¥¡¥¤¥ë
+ // --- ?ê¥½?????Õ¥?????
  else if((strcmp(argv[i_opt],"-r") == 0)||
-    (strcmp(argv[i_opt],"--rcfile") == 0)){ 
+    (strcmp(argv[i_opt],"--rcfile") == 0)){
    if(i_opt+1 < argc ) {
 i_opt++;
 mascot->rcfile=g_strdup(argv[i_opt]);
@@ -4778,7 +4778,7 @@ ScanMenu(smenu, TRUE);
 
 int main(int argc, char **argv)
 {
-#ifndef USE_WIN32  
+#ifndef USE_WIN32
 GdkPixbuf *icon;
 #endif
 GtkStyle *style;
@@ -4790,14 +4790,14 @@ int i_opt ;
 #ifdef USE_SOCKMSG
 SockMsgInitResult sockres;
 gchar *msg = NULL;
-gboolean sockmsg_flag;
-gboolean sockmsg_sendanim;
-gint msg_expire;
-gint msg_step;
-gint msg_mode;
-gint msg_anim;
-gint msg_loops;
-gchar *tmp_msg;
+gboolean sockmsg_flag = FALSE;
+gboolean sockmsg_sendanim = FALSE;
+gint msg_expire= 0;
+gint msg_step  = 0;
+gint msg_mode  = 0;
+gint msg_anim  = 0;
+gint msg_loops = 0;
+gchar *tmp_msg = NULL;
 #endif
 #ifdef USE_WIN32
 #ifdef USE_BIFF
@@ -4829,7 +4829,7 @@ callbacks_arg_init();
 
 
 // GetText
-setlocale (LC_ALL, "");
+setlocale(LC_ALL, "");
 bindtextdomain (PACKAGE, LOCALEDIR);
 textdomain (PACKAGE);
 #ifdef USE_GTK2
@@ -4859,52 +4859,60 @@ while(i_opt < argc) {
    msg_mode=SOCK_STEPPING;
  }
  else if((strcmp(argv[i_opt],"--anim") == 0)){
-   msg_anim = atoi(argv[i_opt + 1]); 
-   sockmsg_sendanim = 1;
+   msg_anim = atoi(argv[i_opt + 1]);
+   sockmsg_sendanim = TRUE;
  }
  else if((strcmp(argv[i_opt],"--anim-loop") == 0)){
-   msg_loops = atoi(argv[i_opt + 1]); 
-   sockmsg_sendanim = 1;
+   msg_loops = atoi(argv[i_opt + 1]);
+   sockmsg_sendanim = TRUE;
  }
  i_opt++;
 }
 
-if (sockmsg_sendanim) sockmsg_flag = 1;
+if (sockmsg_sendanim) sockmsg_flag = TRUE;
 if (sockmsg_flag){
  //if(msg_expire<=0){
  //  msg_expire=(Mascot->sockmsg_expire_def)*(INTERVAL);
  //}
 
+ unsigned int len = 0;
+ if(msg) len = strlen(msg);
  sockres = sockmsg_init();
  switch (sockres) {
     case SOCKMSG_ERROR:
       return -1;
     case SOCKMSG_CREATED:
-      if (msg != NULL || sockmsg_sendanim)
+      if(msg || len || sockmsg_sendanim)
          return -1;
       break;
     case SOCKMSG_OPENED:
       {
-      if (msg == NULL)
+      if (!msg || !len)
       {
          if(!sockmsg_sendanim)
            tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4dMacopix already running in SockMsg Mode"),
             msg_expire,msg_mode,msg_step,msg_anim,msg_loops);
          else
            tmp_msg=g_strdup_printf(_("%8d%2d%4d%4d%4d[nostring]"),
-            msg_expire,msg_mode,msg_step,msg_anim,msg_loops);        
+            msg_expire,msg_mode,msg_step,msg_anim,msg_loops);
       }
        else
+       {
+         msg = g_locale_to_utf8(msg,-1,NULL,NULL,NULL);
+         if(!msg)
+            return;
+
          tmp_msg=g_strdup_printf("%8d%2d%4d%4d%4d%s",
          msg_expire,msg_mode,msg_step,msg_anim,msg_loops,msg);
-   
-         if(tmp_msg)
-         {
-            sockmsg_send_msg(tmp_msg);
-            g_free(tmp_msg);
-         }
-         return 0;
-      } 
+       }
+
+      if(tmp_msg)
+      {
+         sockmsg_send_msg(tmp_msg);
+         g_free(tmp_msg);
+      }
+      return 0;
+      }
     default:
       if (msg != NULL || sockmsg_sendanim){
          g_print(_("Macopix not running in SockMsg Mode\n"));
@@ -4915,7 +4923,7 @@ if (sockmsg_flag){
   }
 #endif
 
-  RANDOMIZE();    /* Íð¿ô·Ï½é´ü²½ */
+  RANDOMIZE();    /* ?????Ï½????? */
 
   Mascot=g_malloc0(sizeof(typMascot));
 
@@ -4944,35 +4952,35 @@ if (sockmsg_flag){
   get_option(argc, argv, Mascot);
 
 
-  // Gdk-Pixbuf¤Ç»ÈÍÑ
+  // Gdk-Pixbuf?Ç»???
   gdk_rgb_init();
 
-#ifndef USE_WIN32  
+#ifndef USE_WIN32
 #ifdef USE_GTK2
-  icon = gdk_pixbuf_new_from_inline(sizeof(macopix_icon), macopix_icon, 
+  icon = gdk_pixbuf_new_from_inline(sizeof(macopix_icon), macopix_icon,
                 FALSE, NULL);
   gtk_window_set_default_icon(icon);
 #endif
 #endif
 
 
-  // Imlib¤ò»ÈÍÑ¤·¤¿¾ì¹ç
+  // Imlib?????Ñ¤???????
   //gdk_imlib_init();
   //gtk_widget_push_visual(gdk_imlib_get_visual());
   //gtk_widget_push_colormap(gdk_imlib_get_colormap());
 
-  // ¥á¥Ë¥å¡¼¤ÎÆÉ¤ß¹þ¤ß¤ÈºîÀ®
+  // ???Ë¥å¡¼???É¤ß¹??ß¤Èº?À®
   Mascot->installed_menu_dir=NULL;
   Mascot->menu_code=NULL;
   ReadMenu(Mascot,0,NULL);
   PopupMenu=make_popup_menu();
-  
+
   if(!Mascot->file){
     if(Mascot->menu_file){
       Mascot->file=g_strdup(all_random_menu_mascot_file(Mascot));
     }
     else{
-      // µ¯Æ°¥á¥Ë¥å¡¼ÁªÂò
+      // ??Æ°???Ë¥å¡¼Áª??
       create_smenu_dialog(Mascot,FALSE);
       if(Mascot->menu_file){
    ReadMenu(Mascot,0,NULL);
@@ -4996,14 +5004,14 @@ if (sockmsg_flag){
 
   //gtk_window_set_policy(GTK_WINDOW(win_main), FALSE, FALSE, TRUE);
   gtk_window_set_wmclass(GTK_WINDOW(win_main), "main_window", "MaCoPiX");
-  
+
   my_signal_connect(win_main, "destroy",gtk_main_quit,NULL);
 
-  gtk_widget_set_events(GTK_WIDGET (win_main), 
-         GDK_FOCUS_CHANGE_MASK | 
-         GDK_BUTTON_MOTION_MASK | 
-         GDK_BUTTON_RELEASE_MASK | 
-         GDK_BUTTON_PRESS_MASK | 
+  gtk_widget_set_events(GTK_WIDGET (win_main),
+         GDK_FOCUS_CHANGE_MASK |
+         GDK_BUTTON_MOTION_MASK |
+         GDK_BUTTON_RELEASE_MASK |
+         GDK_BUTTON_PRESS_MASK |
          GDK_EXPOSURE_MASK);
 
   gtk_widget_realize(win_main);
@@ -5018,14 +5026,14 @@ if (sockmsg_flag){
   gtk_widget_set_app_paintable(win_sdw, TRUE);
   gtk_window_set_title(GTK_WINDOW(win_sdw), "MaCoPiX");
   gtk_window_set_wmclass(GTK_WINDOW(win_sdw), "sdw_window", "MaCoPiX");
-  
+
   my_signal_connect(win_sdw, "destroy",gtk_main_quit,NULL);
 
-  gtk_widget_set_events(GTK_WIDGET (win_sdw), 
-         GDK_FOCUS_CHANGE_MASK | 
-         GDK_BUTTON_MOTION_MASK | 
-         GDK_BUTTON_RELEASE_MASK | 
-         GDK_BUTTON_PRESS_MASK | 
+  gtk_widget_set_events(GTK_WIDGET (win_sdw),
+         GDK_FOCUS_CHANGE_MASK |
+         GDK_BUTTON_MOTION_MASK |
+         GDK_BUTTON_RELEASE_MASK |
+         GDK_BUTTON_PRESS_MASK |
          GDK_EXPOSURE_MASK);
 
   gtk_widget_realize(win_sdw);
@@ -5049,14 +5057,14 @@ if (sockmsg_flag){
   gdk_window_set_decorations(win_main->window, 0);
 #ifndef USE_WIN32
   //  gdk_window_set_decorations(win_main->window, GDK_DECOR_MENU);
-  // Win32 Gtk+> 2.10 -> trayicon 
+  // Win32 Gtk+> 2.10 -> trayicon
   gdk_window_set_override_redirect(win_main->window,TRUE);
 #endif
 
 #ifdef USE_WIN32
   gdk_window_set_decorations(win_sdw->window, 0);
 #endif
-  
+
   my_signal_connect(win_main, "focus_in_event",focus_in, NULL);
   my_signal_connect(win_main, "focus_out_event",focus_out, NULL);
   my_signal_connect(win_main, "button_press_event",drag_begin,
@@ -5080,7 +5088,7 @@ if (sockmsg_flag){
   InitMascot0(Mascot);
   ReadMascot(Mascot,FALSE);
 
-  // ¥«¡¼¥½¥ë
+  // ????????
   Mascot->cursor.normal=gdk_cursor_new(CURSOR_NORMAL);
   Mascot->cursor.push  =gdk_cursor_new(CURSOR_PUSH);
   Mascot->cursor.drag_h=gdk_cursor_new(CURSOR_DRAG_H);
@@ -5104,25 +5112,25 @@ if (sockmsg_flag){
 
   InitComposite(Mascot);
   LoadPixmaps(win_main, Mascot, Mascot->sprites);
-  
+
 
   Mascot->flag_ow=FALSE;
 
-  // WindowºîÀ®¡¦ÊÑ·Á
+  // Window??À®???Ñ·?
   my_signal_connect(win_main, "configure_event",dw_configure_main,
           (gpointer)Mascot);
-  // ½Å¤Ê¤Ã¤¿¾ì¹ç¤ÎºÆÉÁ²è´ØÏ¢
+  // ?Å¤Ê¤Ã¤??????Îº??Á²???Ï¢
   my_signal_connect(win_main, "expose_event",dw_expose_main,
           (gpointer)Mascot);
 
 #ifdef USE_WIN32
   my_signal_connect(win_sdw, "configure_event",dw_configure_sdw,
           (gpointer)Mascot);
-  // ½Å¤Ê¤Ã¤¿¾ì¹ç¤ÎºÆÉÁ²è´ØÏ¢
+  // ?Å¤Ê¤Ã¤??????Îº??Á²???Ï¢
   my_signal_connect(win_sdw, "expose_event",dw_expose_sdw,
           (gpointer)Mascot);
 #endif
-  
+
 #ifdef USE_BIFF
   LoadBiffPixmap(biff_pix, Mascot);
 #ifndef __GTK_TOOLTIP_H__
@@ -5132,12 +5140,12 @@ if (sockmsg_flag){
 
 
 
-  // »þ·×¹¹¿·
+  // ???×¹???
   timer=g_timeout_add_full(G_PRIORITY_HIGH,
-            INTERVAL, 
-            (GSourceFunc)time_update, 
+            INTERVAL,
+            (GSourceFunc)time_update,
             (gpointer)Mascot,
-            NULL);    
+            NULL);
 
   gdk_window_set_cursor(win_main->window,Mascot->cursor.normal);
 #ifdef USE_BIFF
@@ -5194,13 +5202,13 @@ if (sockmsg_flag){
       gtk_widget_unmap(win_sdw);
     }
 #endif
-  
+
   gtk_widget_show(win_main);
   gtk_widget_map(win_main);
 
 
 #ifndef USE_WIN32
-  signal( SIGPIPE , SIG_IGN ); 
+  signal( SIGPIPE , SIG_IGN );
 #endif
 
 #ifdef USE_BIFF
@@ -5225,13 +5233,13 @@ if (sockmsg_flag){
   if(sockmsg_flag) sockmsg_set_mascot(Mascot);
 #endif
 
-  // ½é´üÇÛÃÖ
+  // ????????
   if(Mascot->move==MOVE_FIX){
     MoveMascot(Mascot,Mascot->xfix,Mascot->yfix);
   }
   else{
     MoveMascot(Mascot,-Mascot->height-100,-Mascot->width-100);
-  }   
+  }
 
   gtk_main();
 
@@ -5246,5 +5254,5 @@ if (sockmsg_flag){
 
   return 0;
 }
-  
-  
+
+
